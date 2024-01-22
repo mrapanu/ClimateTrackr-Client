@@ -1,0 +1,96 @@
+.editroom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.room-info,
+.room-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.room-info span {
+  margin: 5px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.input-edit-room {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  height: auto;
+}
+
+.button-edit,
+.button-delete,
+.button-update {
+  margin-left: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #4ad4f7;
+  border: none;
+  font-size: 18px;
+  padding: 5px 0 0 0px;
+  cursor: pointer;
+}
+
+.button-edit:hover {
+  color: #f39c56;
+}
+
+.button-delete {
+  margin-left: 5px;
+  background-color: #f39c56;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  font-size: 16px;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-delete:hover {
+  background-color: tomato;
+}
+
+.button-update {
+  margin-left: 5px;
+  background-color: #4ad4f7;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  font-size: 16px;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-update:hover {
+  background-color: #07eeff;
+}
+
+@media (max-width: 767px) {
+  .editroom-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input-edit-room {
+    width: 100%;
+  }
+
+  .button-delete,
+  .button-update {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}

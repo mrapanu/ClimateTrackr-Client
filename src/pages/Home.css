@@ -1,0 +1,97 @@
+.house-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.window {
+  position: absolute;
+  width: 12.5%;
+  height: 17%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(255, 255, 255, 0);
+  border: 3px solid #270e04;
+  border-radius: 5px;
+}
+
+#window1 {
+  top: 38%;
+  left: 33%;
+}
+#window2 {
+  top: 38%;
+  right: 33%;
+}
+#window3 {
+  bottom: 23%;
+  left: 33%;
+}
+#window4 {
+  bottom: 23%;
+  right: 33%;
+}
+
+@media only screen and (max-width: 1080px) {
+  .window {
+    position: absolute;
+    width: 23.5%;
+    height: 17%;
+    border: 3px solid #270e04;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  #window1 {
+    top: 38%;
+    left: 17%;
+  }
+  #window2 {
+    top: 38%;
+    right: 17.5%;
+  }
+  #window3 {
+    bottom: 23%;
+    left: 17%;
+  }
+  #window4 {
+    bottom: 23%;
+    right: 17.5%;
+  }
+}
+.add-room-btn {
+  box-sizing: border-box;
+  font-weight: bolder;
+  border-radius: 4px;
+  border: none;
+  color: #270e04;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  width: 90%;
+  height: 90%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.day-add-room-btn {
+  background-color: rgba(242, 200, 17, 0.8);
+}
+.night-add-room-btn {
+  background-color: rgba(240, 159, 65, 0.8);
+}
+.add-room-btn:hover {
+  background-color: rgb(191, 210, 168, 0.5);
+}
+
+.hidden {
+  display: none;
+}

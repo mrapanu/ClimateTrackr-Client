@@ -1,0 +1,33 @@
+.body-container {
+  height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-size: 100% 100%;
+}
+
+.body-container.day {
+  background-image: url("../../public/day.png");
+}
+
+.body-container.night {
+  background-image: url("../../public/night.png");
+}
+
+@media only screen and (max-width: 1080px) {
+  .body-container.day {
+    background-image: url("../../public/day-small.png");
+  }
+
+  .body-container.night {
+    background-image: url("../../public/night-small.png");
+  }
+}
+
+.page-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}

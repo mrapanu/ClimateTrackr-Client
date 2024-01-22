@@ -1,0 +1,176 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+header.day {
+  color: #270e04;
+}
+
+header.night {
+  color: #191813;
+}
+h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 15px;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.navButton {
+  margin: 0 15px;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  margin: 0;
+}
+
+.navButton:hover.day {
+  color: #bed2a5;
+}
+
+.navButton:hover.night {
+  color: #26676b;
+}
+
+a.day {
+  text-decoration: none;
+  color: #270e04;
+}
+
+a.day:hover {
+  text-decoration: none;
+  color: #bed2a5;
+}
+
+a.day:active {
+  color: #bed2a5;
+}
+
+a.night {
+  text-decoration: none;
+  color: #191813;
+}
+
+a.night:hover {
+  text-decoration: none;
+  color: #26676b;
+}
+
+a.night:active {
+  color: #26676b;
+}
+
+.nav-right {
+  margin-left: auto;
+}
+nav li:hover.day {
+  color: #bed2a5;
+}
+
+nav li:hover.night {
+  color: #26676b;
+}
+
+.nav-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 1080px) {
+  header {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .navButton {
+    font-size: 16px;
+    text-decoration: none;
+    display: list-item;
+  }
+
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 251, 244, 0.2);
+    z-index: 1001;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav li {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    margin: 5px 0;
+  }
+
+  nav li:hover.day {
+    color: #bed2a5;
+  }
+
+  nav li:hover.night {
+    color: #26676b;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-toggle:hover.day {
+    color: #bed2a5;
+  }
+
+  .nav-toggle:hover.night {
+    color: #26676b;
+  }
+}

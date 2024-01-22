@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login, { loginAction } from "./pages/Login";
+import Home from "./pages/Home";
+import { checkAuthLoader, checkIsLoggedIn } from "./util/auth";
+import ErrorPage from "./pages/Error";
+import CtxProvider from "./util/reducer";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+    id: "root",
+    loader: checkAuthLoader,
+  },
+  {
+    path: "login",
+    element: <Login />,
+    loader: checkIsLoggedIn,
+    action: loginAction,
+  },
+]);
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CtxProvider>
+      <RouterProvider router={router} />
+    </CtxProvider>
   );
-}
+};
 
 export default App;

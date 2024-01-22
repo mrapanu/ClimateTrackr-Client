@@ -1,0 +1,66 @@
+.room {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 2px;
+  border: 1px solid #270e04;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 2px 3px 2px 3px;
+}
+
+.room-name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #270e04;
+  width: 100%;
+}
+.room:hover {
+  background-color: rgba(190, 210, 165, 0.4);
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+.group {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 20px);
+}
+.temperature {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #f39c56;
+}
+.humidity {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #4ad4f7;
+}
+
+@media only screen and (max-width: 1080px) {
+  .room {
+    margin: 1px 2px;
+  }
+  .room-name {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+  .group {
+    margin: 0 1px;
+    width: calc(100% - 1px);
+  }
+  .temperature {
+    font-size: 10px;
+  }
+  .humidity {
+    font-size: 10px;
+  }
+}
