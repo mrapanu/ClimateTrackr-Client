@@ -5,6 +5,7 @@ import { getAuthToken } from "../util/auth";
 import { Ctx } from "../util/reducer";
 import "./EditModal.css";
 import EditRoom from "./EditRoom";
+import AddRoom from "./AddRoom";
 
 const EditModal = ({ isOpen, onClose, windowNumber }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -54,10 +55,13 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
               <div>
                 <p>
                   There is no room on this window. You can add maximum 3 rooms
-                  per window. Press the button below to add a room
+                  per window.
                 </p>
-                <button>Add Room</button>
+                <AddRoom windowNumber={windowNumber}></AddRoom>
               </div>
+            )}
+            {state.roomData.length > 0 && state.roomData.length < 3 && (
+              <AddRoom windowNumber={windowNumber}></AddRoom>
             )}
           </div>
         </div>,
