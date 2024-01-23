@@ -54,8 +54,13 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
             ) : (
               <div>
                 <p>
-                  There is no room on this window. You can add maximum 3 rooms
-                  per window.
+                  There is no room on this window. You can add maximum
+                  <strong> 3 rooms </strong>per window.
+                </p>
+                <p>
+                  <strong>IMPORTANT: </strong>
+                  The Room Name must match the room name from the sensor,
+                  otherwise, you will not receive the data.
                 </p>
                 <AddRoom windowNumber={windowNumber}></AddRoom>
               </div>

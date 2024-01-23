@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+strong{
+  color:#f39c56;
+}
+
 .edit-modal-overlay {
   position: fixed;
   top: 0;
