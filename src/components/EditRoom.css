@@ -30,6 +30,10 @@
   height: auto;
 }
 
+.input-edit-room::placeholder {
+  text-align: center;
+  color: #f39c56;
+}
 .button-edit,
 .button-delete,
 .button-update {

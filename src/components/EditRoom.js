@@ -7,11 +7,13 @@ import { Ctx } from "../util/reducer";
 const EditRoom = ({ data }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
   const [inputValue, setInputValue] = useState(data.roomName);
+  const [showError, setShowError] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const { state, dispatch } = useContext(Ctx);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+    setShowError(false);
   };
 
   const handleLockToggle = () => {
@@ -19,8 +21,13 @@ const EditRoom = ({ data }) => {
   };
 
   const renameRoom = (id, inputVal) => {
-    renameRoomAsync(id, inputVal, apiUrl, state, dispatch);
-    setIsEdit(!isEdit);
+    if (inputVal !== "") {
+      renameRoomAsync(id, inputVal, apiUrl, state, dispatch);
+      setIsEdit(!isEdit);
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
   };
 
   const deleteRoom = (id) => {
@@ -35,6 +42,7 @@ const EditRoom = ({ data }) => {
         {isEdit ? (
           <input
             className="input-edit-room"
+            placeholder={`${showError ? "Can't be empty!" : ""}`}
             type="text"
             value={inputValue}
             onChange={handleInputChange}
