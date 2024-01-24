@@ -14,7 +14,17 @@
   background-image: url("../../public/night.png");
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (min-width: 601px) and (max-width: 1080px) {
+  .body-container.day {
+    background-image: url("../../public/day-medium.png");
+  }
+
+  .body-container.night {
+    background-image: url("../../public/night-medium.png");
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .body-container.day {
     background-image: url("../../public/day-small.png");
   }
