@@ -23,11 +23,23 @@
 }
 
 .input-add-room {
-  font-size: 18px;
-  padding: 0;
+  font-size: 16px;
+  padding: 5px;
   margin: 0;
-  width: 50%;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #525252;
   height: auto;
+  text-align: center;
+  color: #f39c56;
+}
+
+.input-description {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 15px 0 0;
+  color: #525252;
 }
 
 .input-add-room::placeholder {
@@ -54,7 +66,7 @@
 @media (max-width: 767px) {
   .addroom-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: start;
   }
 
   .input-add-room {
@@ -63,6 +75,6 @@
 
   .button-add {
     margin-left: 0;
-    margin-top: 5px;
+    margin-top: 20px;
   }
 }

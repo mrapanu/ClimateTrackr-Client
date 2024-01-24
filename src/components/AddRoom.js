@@ -27,7 +27,7 @@ const AddRoom = ({ windowNumber }) => {
   return (
     <div className="addroom-container">
       <div className="room-info">
-        <span>RoomName:</span>
+        <div className="input-description">RoomName: </div>
         <input
           className="input-add-room"
           placeholder={`${showError ? "Can't be empty!" : ""}`}
@@ -35,6 +35,7 @@ const AddRoom = ({ windowNumber }) => {
           value={inputValue}
           onChange={handleInputChange}
         />
+
       </div>
       <div className="room-buttons">
         <button

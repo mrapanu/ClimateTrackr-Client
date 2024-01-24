@@ -46,22 +46,22 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
             <span className="edit-close-button" onClick={onClose}>
               &times;
             </span>
-            <h1>Manage rooms in window {windowNumber}</h1>
+            <div className="title">Window {windowNumber} - Room Management</div>
             {state.roomData.length !== 0 ? (
               state.roomData.map((i) => (
                 <EditRoom key={i.id} data={i}></EditRoom>
               ))
             ) : (
               <div>
-                <p>
+                <div className="paragraph">
                   There is no room on this window. You can add maximum
                   <strong> 3 rooms </strong>per window.
-                </p>
-                <p>
+                </div>
+                <div className="paragraph">
                   <strong>IMPORTANT: </strong>
                   The Room Name must match the room name from the sensor,
                   otherwise, you will not receive the data.
-                </p>
+                </div>
                 <AddRoom windowNumber={windowNumber}></AddRoom>
               </div>
             )}

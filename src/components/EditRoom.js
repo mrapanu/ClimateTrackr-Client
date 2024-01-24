@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { FaPen } from "react-icons/fa";
 import { getAuthToken } from "../util/auth";
 import "./EditRoom.css";
@@ -6,10 +6,20 @@ import { Ctx } from "../util/reducer";
 
 const EditRoom = ({ data }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState(data.roomName);
   const [showError, setShowError] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const { state, dispatch } = useContext(Ctx);
+
+  useEffect(() => {
+    if (isEdit && inputRef.current) {
+      // Use setTimeout to focus after the input is fully rendered
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
+    }
+  }, [isEdit]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -18,12 +28,13 @@ const EditRoom = ({ data }) => {
 
   const handleLockToggle = () => {
     setIsEdit(!isEdit);
+    setInputValue("");
   };
 
   const renameRoom = (id, inputVal) => {
-    if (inputVal !== "") {
+    if (inputVal.trim() !== "") {
       renameRoomAsync(id, inputVal, apiUrl, state, dispatch);
-      setIsEdit(!isEdit);
+      setIsEdit(false);
       setShowError(false);
     } else {
       setShowError(true);
@@ -37,8 +48,7 @@ const EditRoom = ({ data }) => {
   return (
     <div className="editroom-container">
       <div className="room-info">
-        <span>ID: {data.id}</span>
-        <span>RoomName:</span>
+        <div className="edit-room-text">RoomName:</div>
         {isEdit ? (
           <input
             className="input-edit-room"
@@ -46,9 +56,16 @@ const EditRoom = ({ data }) => {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
+            ref={inputRef}
           />
         ) : (
-          <span>{data.roomName}</span>
+          <input
+            className="input-edit-room"
+            placeholder={data.roomName}
+            value={inputValue}
+            disabled
+            type="text"
+          />
         )}
         <button className="button-edit" onClick={handleLockToggle}>
           <FaPen />

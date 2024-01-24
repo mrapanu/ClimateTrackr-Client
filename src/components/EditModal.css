@@ -2,8 +2,13 @@ body {
   margin: 0;
 }
 
-strong{
-  color:#f39c56;
+strong {
+  color: #f39c56;
+}
+.paragraph{
+  font-size: 16px;
+  margin-top: 15px;
+  color: #525252;
 }
 
 .edit-modal-overlay {

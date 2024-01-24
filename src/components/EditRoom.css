@@ -22,12 +22,39 @@
   font-weight: bolder;
 }
 
-.input-edit-room {
+.edit-room-text {
   font-size: 18px;
-  padding: 0;
+  font-weight: 600;
+  margin: 0 15px 0 0;
+  color: #525252;
+}
+
+.title {
+  margin-top: 2%;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 5px 0;
+  color: #525252;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.input-edit-room {
+  font-size: 16px;
+  padding: 5px;
   margin: 0;
-  width: 50%;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #525252;
   height: auto;
+  text-align: center;
+  color: #f39c56;
+}
+
+.input-edit-room:disabled {
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #525252;
 }
 
 .input-edit-room::placeholder {
@@ -46,6 +73,9 @@
   cursor: pointer;
 }
 
+.button-edit {
+  margin-left: 15px;
+}
 .button-edit:hover {
   color: #f39c56;
 }
@@ -85,7 +115,7 @@
 @media (max-width: 767px) {
   .editroom-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: start;
   }
 
   .input-edit-room {
@@ -95,6 +125,9 @@
   .button-delete,
   .button-update {
     margin-left: 0;
-    margin-top: 5px;
+    margin-top: 20px;
+  }
+  .button-update {
+    margin-right: 10px;
   }
 }
