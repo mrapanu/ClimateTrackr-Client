@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./MainNavigation.css";
 import { Ctx } from "../util/reducer";
+import AdminModal from "./AdminModal";
 
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
+  const [adminModal, setAdminModal] = useState(false);
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Ctx);
   const toggleEditMode = () => {
@@ -21,7 +23,16 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
     navigate("/login");
   };
 
+  const openAdminModal = () => {
+    setAdminModal(true);
+  };
+
+  const closeAdminModal = () => {
+    setAdminModal(false);
+  };
+
   return (
+    <>
     <header className={isNightTime ? "night" : "day"}>
       <NavLink className={isNightTime ? "night" : "day"} to="/">
         <h1>ClimateTrackr</h1>
@@ -46,7 +57,9 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
           )}
           {isLoggedIn && isAdmin && (
             <li className={isNightTime ? "night" : "day"}>
-              <button className="navButton">Admin</button>
+              <button className="navButton" onClick={openAdminModal}>
+                Admin
+              </button>
             </li>
           )}
           {isLoggedIn &&
@@ -74,6 +87,7 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
         </ul>
       </nav>
     </header>
+    <AdminModal isOpen={adminModal} onClose={closeAdminModal}></AdminModal></>
   );
 };
 
