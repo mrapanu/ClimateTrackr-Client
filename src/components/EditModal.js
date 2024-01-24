@@ -38,11 +38,9 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
   }, [apiUrl, isOpen, dispatch, windowNumber]);
   return isOpen
     ? ReactDOM.createPortal(
-        <div className="edit-modal-overlay" onClick={onClose}>
-          <div
-            className="edit-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="edit-modal-container">
+          <div className="edit-modal-overlay" onClick={onClose}></div>
+          <div className="edit-modal-content">
             <span className="edit-close-button" onClick={onClose}>
               &times;
             </span>

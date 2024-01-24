@@ -5,7 +5,7 @@ body {
 strong {
   color: #f39c56;
 }
-.paragraph{
+.paragraph {
   font-size: 16px;
   margin-top: 15px;
   color: #525252;
@@ -23,7 +23,24 @@ strong {
   justify-content: center;
 }
 
+.edit-modal-container {
+  background: transparent;
+  border-radius: 8px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  top: 5%;
+  left: 0;
+  z-index: 10;
+}
+
 .edit-modal-content {
+  top: 0;
+  left: 0;
+  right: 5%;
+  bottom: 5%;
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -32,6 +49,7 @@ strong {
   height: 90vh;
   max-width: 85%;
   max-height: 85%;
+  z-index: 5;
 }
 
 .edit-close-button {

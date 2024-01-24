@@ -25,11 +25,9 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
 
   return isOpen
     ? ReactDOM.createPortal(
-        <div className="room-modal-overlay" onClick={onClose}>
-          <div
-            className="room-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="room-modal-container">
+          <div className="room-modal-overlay" onClick={onClose}></div>
+          <div className="room-modal-content">
             <span className="room-close-button" onClick={onClose}>
               &times;
             </span>

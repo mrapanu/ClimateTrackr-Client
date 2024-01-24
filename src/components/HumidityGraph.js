@@ -24,7 +24,10 @@ const HumidityGraph = ({ data }) => {
   return (
     <div>
       <h2>Humidity Chart</h2>
-      <ResponsiveContainer width="100%" height={270}>
+      <ResponsiveContainer
+        width="100%"
+        height={window.innerWidth < 600 ? 220 : 270}
+      >
         <AreaChart data={transformedData}>
           <XAxis dataKey="date" />
           <YAxis dataKey="humidity" />

@@ -8,6 +8,7 @@ import AdminModal from "./AdminModal";
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
   const [adminModal, setAdminModal] = useState(false);
+  const [view, setView] = useState("general");
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Ctx);
   const toggleEditMode = () => {
@@ -30,64 +31,78 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const closeAdminModal = () => {
     setAdminModal(false);
   };
+  const changeView = (viewName, event) => {
+    setView(viewName);
+    // event.stopPropagation();
+  };
 
   return (
     <>
-    <header className={isNightTime ? "night" : "day"}>
-      <NavLink className={isNightTime ? "night" : "day"} to="/">
-        <h1>ClimateTrackr</h1>
-      </NavLink>
+      <header className={isNightTime ? "night" : "day"}>
+        <NavLink className={isNightTime ? "night" : "day"} to="/">
+          <h1>ClimateTrackr</h1>
+        </NavLink>
 
-      <nav className={isNightTime ? "night" : "day"}>
-        <div
-          className={isNightTime ? "nav-toggle night" : " nav-toggle day"}
-          onClick={toggleNav}
-        >
-          ☰ Menu
-        </div>
-        <ul
-          className={`${isNavActive ? "active" : ""} ${
-            isNightTime ? "night" : "day"
-          }`}
-        >
-          {isLoggedIn && (
-            <li className={isNightTime ? "night" : "day"}>
-              <button className="navButton">Settings</button>
-            </li>
-          )}
-          {isLoggedIn && isAdmin && (
-            <li className={isNightTime ? "night" : "day"}>
-              <button className="navButton" onClick={openAdminModal}>
-                Admin
-              </button>
-            </li>
-          )}
-          {isLoggedIn &&
-            isAdmin &&
-            (state.isEditMode ? (
+        <nav className={isNightTime ? "night" : "day"}>
+          <div
+            className={isNightTime ? "nav-toggle night" : " nav-toggle day"}
+            onClick={toggleNav}
+          >
+            ☰ Menu
+          </div>
+          <ul
+            className={`${isNavActive ? "active" : ""} ${
+              isNightTime ? "night" : "day"
+            }`}
+          >
+            {isLoggedIn && (
               <li className={isNightTime ? "night" : "day"}>
-                <button onClick={toggleEditMode} className="navButton">
-                  Exit Edit
+                <button className="navButton">Settings</button>
+              </li>
+            )}
+            {isLoggedIn && isAdmin && (
+              <li className={isNightTime ? "night" : "day"}>
+                <button className="navButton" onClick={openAdminModal}>
+                  Admin
                 </button>
               </li>
-            ) : (
+            )}
+            {isLoggedIn &&
+              isAdmin &&
+              (state.isEditMode ? (
+                <li className={isNightTime ? "night" : "day"}>
+                  <button onClick={toggleEditMode} className="navButton">
+                    Exit Edit
+                  </button>
+                </li>
+              ) : (
+                <li className={isNightTime ? "night" : "day"}>
+                  <button onClick={toggleEditMode} className="navButton">
+                    Edit
+                  </button>
+                </li>
+              ))}
+            {isLoggedIn && (
               <li className={isNightTime ? "night" : "day"}>
-                <button onClick={toggleEditMode} className="navButton">
-                  Edit
+                <button onClick={logoutAction} className="navButton">
+                  Logout
                 </button>
               </li>
-            ))}
-          {isLoggedIn && (
-            <li className={isNightTime ? "night" : "day"}>
-              <button onClick={logoutAction} className="navButton">
-                Logout
-              </button>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
-    <AdminModal isOpen={adminModal} onClose={closeAdminModal}></AdminModal></>
+            )}
+          </ul>
+        </nav>
+      </header>
+      <AdminModal
+        onChangeView={changeView}
+        view={view}
+        isOpen={adminModal}
+        onClose={closeAdminModal}
+      >
+        {view === "general" && <h1>GENERAL CONTENT</h1>}
+        {view === "smtp" && <h1>SMTP CONTENT</h1>}
+        {view === "accounts" && <h1>ACCOUNTS CONTENT</h1>}
+      </AdminModal>
+    </>
   );
 };
 
