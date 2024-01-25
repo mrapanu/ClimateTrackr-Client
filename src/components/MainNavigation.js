@@ -18,6 +18,10 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
     setIsNavActive(!isNavActive);
   };
 
+  const onCloseNav = () => {
+    setIsNavActive(false);
+  };
+
   const logoutAction = () => {
     dispatch({ type: "LOGOUT" });
     localStorage.removeItem("token");
@@ -31,16 +35,15 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const closeAdminModal = () => {
     setAdminModal(false);
   };
-  const changeView = (viewName, event) => {
+  const changeView = (viewName) => {
     setView(viewName);
-    // event.stopPropagation();
   };
 
   return (
     <>
       <header className={isNightTime ? "night" : "day"}>
         <NavLink className={isNightTime ? "night" : "day"} to="/">
-          <h1>ClimateTrackr</h1>
+          <div className="site-title">ClimateTrackr</div>
         </NavLink>
 
         <nav className={isNightTime ? "night" : "day"}>
@@ -50,46 +53,48 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
           >
             ☰ Menu
           </div>
-          <ul
-            className={`${isNavActive ? "active" : ""} ${
-              isNightTime ? "night" : "day"
-            }`}
-          >
-            {isLoggedIn && (
-              <li className={isNightTime ? "night" : "day"}>
-                <button className="navButton">Settings</button>
-              </li>
-            )}
-            {isLoggedIn && isAdmin && (
-              <li className={isNightTime ? "night" : "day"}>
-                <button className="navButton" onClick={openAdminModal}>
-                  Admin
-                </button>
-              </li>
-            )}
-            {isLoggedIn &&
-              isAdmin &&
-              (state.isEditMode ? (
+          <div onClick={onCloseNav}>
+            <ul
+              className={`${isNavActive ? "active" : ""} ${
+                isNightTime ? "night" : "day"
+              }`}
+            >
+              {isLoggedIn && (
                 <li className={isNightTime ? "night" : "day"}>
-                  <button onClick={toggleEditMode} className="navButton">
-                    Exit Edit
+                  <button className="navButton">Settings</button>
+                </li>
+              )}
+              {isLoggedIn && isAdmin && (
+                <li className={isNightTime ? "night" : "day"}>
+                  <button className="navButton" onClick={openAdminModal}>
+                    Admin
                   </button>
                 </li>
-              ) : (
+              )}
+              {isLoggedIn &&
+                isAdmin &&
+                (state.isEditMode ? (
+                  <li className={isNightTime ? "night" : "day"}>
+                    <button onClick={toggleEditMode} className="navButton">
+                      Exit Edit
+                    </button>
+                  </li>
+                ) : (
+                  <li className={isNightTime ? "night" : "day"}>
+                    <button onClick={toggleEditMode} className="navButton">
+                      Edit
+                    </button>
+                  </li>
+                ))}
+              {isLoggedIn && (
                 <li className={isNightTime ? "night" : "day"}>
-                  <button onClick={toggleEditMode} className="navButton">
-                    Edit
+                  <button onClick={logoutAction} className="navButton">
+                    Logout
                   </button>
                 </li>
-              ))}
-            {isLoggedIn && (
-              <li className={isNightTime ? "night" : "day"}>
-                <button onClick={logoutAction} className="navButton">
-                  Logout
-                </button>
-              </li>
-            )}
-          </ul>
+              )}
+            </ul>
+          </div>
         </nav>
       </header>
       <AdminModal
