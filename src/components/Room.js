@@ -57,8 +57,8 @@ const Room = ({ roomName, id }) => {
       <button onClick={openModal} className="room" id={id}>
         <span className="room-name">{roomName}</span>
         <div className="group">
-          <span className="temperature">T: {temp}</span>
-          <span className="humidity">H: {hum}</span>
+          <span className="temperature">{temp}</span>
+          <span className="humidity">{hum}</span>
         </div>
       </button>
       <RoomModal

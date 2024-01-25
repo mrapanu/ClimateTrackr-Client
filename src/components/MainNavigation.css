@@ -111,7 +111,7 @@ nav li:hover.night {
   font-size: 18px;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1024px) {
   header {
     width: 90%;
     margin-left: 5%;
@@ -123,7 +123,6 @@ nav li:hover.night {
     text-decoration: none;
     display: list-item;
   }
-
   nav ul {
     flex-direction: column;
     position: absolute;
@@ -164,6 +163,70 @@ nav li:hover.night {
 
   .nav-toggle {
     display: block;
+  }
+
+  .nav-toggle:hover.day {
+    color: #bed2a5;
+  }
+
+  .nav-toggle:hover.night {
+    color: #26676b;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1280px) and (min-height: 500px) {
+  header {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .navButton {
+    font-size: 25px;
+    text-decoration: none;
+    display: list-item;
+  }
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 251, 244, 0.2);
+    z-index: 1001;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav li {
+    width: 100%;
+    text-align: left;
+    font-size: 25px;
+    margin: 5px 0;
+  }
+
+  nav li:hover.day {
+    color: #bed2a5;
+  }
+
+  nav li:hover.night {
+    color: #26676b;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin: 0;
+  }
+
+  .nav-toggle {
+    display: block;
+    font-size: 25px;
   }
 
   .nav-toggle:hover.day {

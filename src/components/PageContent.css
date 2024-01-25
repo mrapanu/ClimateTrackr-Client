@@ -1,36 +1,56 @@
 .body-container {
   height: 100vh;
-  max-width: 100%;
+  max-width: 100vw;
   overflow: hidden;
   position: relative;
   background-size: 100% 100%;
 }
 
 .body-container.day {
-  background-image: url("../../public/day.png");
+  background-image: url("../../public/day-desktop.png");
 }
 
 .body-container.night {
-  background-image: url("../../public/night.png");
+  background-image: url("../../public/night-desktop.png");
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1080px) {
+/* Styles for phones in portrait mode */
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
   .body-container.day {
-    background-image: url("../../public/day-medium.png");
+    background-image: url("../../public/day-phone-portrait.png");
   }
-
   .body-container.night {
-    background-image: url("../../public/night-medium.png");
+    background-image: url("../../public/night-phone-portrait.png");
   }
 }
 
-@media only screen and (max-width: 600px) {
+/* Styles for phones in landscape mode */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
   .body-container.day {
-    background-image: url("../../public/day-small.png");
+    background-image: url("../../public/day-phone-landscape.png");
   }
-
   .body-container.night {
-    background-image: url("../../public/night-small.png");
+    background-image: url("../../public/night-phone-landscape.png");
+  }
+}
+
+/* Styles for tablets in portrait mode */
+@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .body-container.day {
+    background-image: url("../../public/day-tablet-portrait.png");
+  }
+  .body-container.night {
+    background-image: url("../../public/night-tablet-portrait.png");
+  }
+}
+
+/* Styles for tablets in landscape mode */
+@media only screen and (min-device-width: 1021px) and (max-device-width: 1400px) and (orientation: landscape) {
+  .body-container.day {
+    background-image: url("../../public/day-tablet-landscape.png");
+  }
+  .body-container.night {
+    background-image: url("../../public/night-tablet-landscape.png");
   }
 }
 

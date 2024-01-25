@@ -2,23 +2,27 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   background-color: #fff;
   cursor: pointer;
-  padding: 2px;
   border: 1px solid #270e04;
   border-radius: 5px;
   box-sizing: border-box;
   height: 100%;
-  margin: 2px 3px 2px 3px;
+  margin: 2px 3px;
 }
 
 .room-name {
-  margin-bottom: 5px;
   font-size: 14px;
   font-weight: bolder;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20ch;
   color: #270e04;
   width: 100%;
 }
+
 .room:hover {
   background-color: rgba(190, 210, 165, 0.4);
   border-radius: 5px;
@@ -45,22 +49,84 @@
   color: #4ad4f7;
 }
 
-@media only screen and (max-width: 1080px) {
+/* PHONES */
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
   .room {
     margin: 1px 2px;
   }
   .room-name {
-    font-size: 10px;
-    margin-bottom: 3px;
+    font-size: 14px;
+    margin-bottom: 3%;
+    max-width: 16ch;
   }
   .group {
     margin: 0 1px;
     width: calc(100% - 1px);
   }
   .temperature {
-    font-size: 10px;
+    font-size: 12px;
   }
   .humidity {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
+  .room {
+    margin: 1px;
+  }
+  .room-name {
     font-size: 10px;
+    max-width: 16ch;
+  }
+  .group {
+    margin: 0 1px;
+    width: calc(100% - 1px);
+  }
+  .temperature {
+    font-size: 8px;
+  }
+  .humidity {
+    font-size: 8px;
+  }
+}
+/* TABLETS */
+@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .room {
+    margin: 2px;
+  }
+  .room-name {
+    font-size: 16px;
+    max-width: 16ch;
+  }
+  .group {
+    margin: 0 1px;
+    width: calc(100% - 1px);
+  }
+  .temperature {
+    font-size: 14px;
+  }
+  .humidity {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-device-width: 1021px) and (max-device-width: 1400px) and (orientation: landscape) {
+  .room {
+    margin: 2px;
+  }
+  .room-name {
+    font-size: 16px;
+    max-width: 16ch;
+  }
+  .group {
+    margin: 0 1px;
+    width: calc(100% - 1px);
+  }
+  .temperature {
+    font-size: 14px;
+  }
+  .humidity {
+    font-size: 14px;
   }
 }
