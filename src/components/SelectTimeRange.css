@@ -1,5 +1,7 @@
 .custom-select-container {
   margin: 10px 0;
+  display: flex;
+  flex-direction: row;
 }
 
 select {
@@ -11,6 +13,16 @@ select {
   color: #4ad4f7;
 }
 
+.general-room-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 15px 0 0;
+  color: #525252;
+}
+
+h2 {
+  color: #525252;
+}
 select option {
   color: rgb(243, 156, 86);
   font-size: 16px;

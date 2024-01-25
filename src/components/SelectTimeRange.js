@@ -8,7 +8,9 @@ const SelectTimeRange = ({ value, onChange }) => {
 
   return (
     <div className="custom-select-container">
-      <span htmlFor="timeRange">Time Range: </span>
+      <div className="general-room-text" htmlFor="timeRange">
+        Time Range:
+      </div>
       <select id="timeRange" value={value} onChange={handleSelectChange}>
         <option value="2592000000">1 Month</option>
         <option value="604800000">1 Week</option>

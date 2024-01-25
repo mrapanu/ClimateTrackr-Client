@@ -15,8 +15,8 @@ body {
 }
 
 .admin-modal-content {
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   right: 5%;
   bottom: 5%;
   background: white;
@@ -79,7 +79,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: #252525;
+  color: #525252;
 }
 
 .panel .list .item {

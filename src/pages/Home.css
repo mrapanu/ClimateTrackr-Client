@@ -14,8 +14,26 @@
   background-color: rgba(255, 255, 255, 0);
   border: 3px solid #270e04;
   border-radius: 5px;
+  width: 13%;
+  height: 18%;
 }
 
+#window1 {
+  top: 37.5%;
+  left: 32%;
+}
+#window2 {
+  top: 37.5%;
+  right: 32%;
+}
+#window3 {
+  bottom: 23%;
+  left: 32%;
+}
+#window4 {
+  bottom: 23%;
+  right: 32%;
+}
 .add-room-btn {
   box-sizing: border-box;
   font-weight: bolder;
