@@ -30,7 +30,7 @@ const AdminModal = ({ onChangeView, view, isOpen, onClose, children }) => {
                       className={`item ${view === "smtp" && "selected"}`}
                       onClick={(event) => onChangeView("smtp", event)}
                     >
-                      SMTP SETTINGS
+                      SMTP
                     </div>
                   </div>
                 </div>

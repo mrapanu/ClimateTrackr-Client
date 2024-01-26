@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./MainNavigation.css";
 import { Ctx } from "../util/reducer";
 import AdminModal from "./AdminModal";
+import AccountPanel from "./AccountPanel";
 
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
@@ -105,7 +106,7 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
       >
         {view === "general" && <h1>GENERAL CONTENT</h1>}
         {view === "smtp" && <h1>SMTP CONTENT</h1>}
-        {view === "accounts" && <h1>ACCOUNTS CONTENT</h1>}
+        {view === "accounts" && <AccountPanel />}
       </AdminModal>
     </>
   );
