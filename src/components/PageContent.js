@@ -32,7 +32,7 @@ const PageContent = ({ children }) => {
 
     const intervalOne = setInterval(() => {
       checkExpiredJwt(exp, dispatch, navigate, Date.now());
-    }, 60000); //check if token is expired every minute.
+    }, 60000); //check if token is expired 
     const intervalTwo = setInterval(() => {
       dispatch({ type: "ISNIGHT", payload: isNightTime });
     }, 1800000);

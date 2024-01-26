@@ -7,7 +7,7 @@ const AddRoom = ({ windowNumber }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
   const [inputValue, setInputValue] = useState("");
   const [showError, setShowError] = useState(false);
-  const { state, dispatch } = useContext(Ctx);
+  const { dispatch } = useContext(Ctx);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -16,7 +16,7 @@ const AddRoom = ({ windowNumber }) => {
 
   const addRoom = (windowNumber, inputVal) => {
     if (inputVal !== "") {
-      addRoomAsync(windowNumber, inputVal, apiUrl, state, dispatch);
+      addRoomAsync(windowNumber, inputVal, apiUrl, dispatch);
       setInputValue("");
       setShowError(false);
     } else {
@@ -35,7 +35,6 @@ const AddRoom = ({ windowNumber }) => {
           value={inputValue}
           onChange={handleInputChange}
         />
-
       </div>
       <div className="room-buttons">
         <button
@@ -49,7 +48,7 @@ const AddRoom = ({ windowNumber }) => {
   );
 };
 
-const addRoomAsync = async (window, roomFromInput, url, state, dispatch) => {
+const addRoomAsync = async (window, roomFromInput, url, dispatch) => {
   const roomData = {
     window: window,
     roomName: roomFromInput,
