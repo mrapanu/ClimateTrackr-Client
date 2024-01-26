@@ -7,6 +7,7 @@ const initialState = {
   isNight: false,
   isAdmin: false,
   roomData: [],
+  accountData: [],
 };
 
 const reducer = (state, action) => {
@@ -21,6 +22,8 @@ const reducer = (state, action) => {
       return initialState;
     case "UPDATE_ROOM_DATA":
       return { ...state, roomData: action.payload };
+    case "UPDATE_ACCOUNT_DATA":
+      return { ...state, accountData: action.payload };
     default:
       return state;
   }

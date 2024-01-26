@@ -9,6 +9,15 @@ export function getAuthToken() {
   return token;
 }
 
+export function getUsernameFromToken() {
+  if (localStorage.getItem("token") !== null) {
+    const jwt = jwtDecode(localStorage.getItem("token"));
+    return jwt.unique_name;
+  } else {
+    return null;
+  }
+}
+
 export function tokenLoader() {
   const token = getAuthToken();
   return token;
