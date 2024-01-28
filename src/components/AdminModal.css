@@ -28,6 +28,7 @@ body {
   max-width: 85%;
   max-height: 85%;
   z-index: 5;
+  overflow-y: auto ;
 }
 
 .admin-modal-container {
@@ -107,6 +108,7 @@ body {
 @media screen and (max-width: 600px) {
   .add-modal-content {
     width: 90vw;
+    height: 90vh;
     max-width: 90%;
   }
   .panel .list .item {

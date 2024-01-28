@@ -1,6 +1,7 @@
 .account-panel-container {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   width: 100%;
 }
 
@@ -46,7 +47,6 @@
 .button-cancel-add-account:hover {
   background-color: tomato;
 }
-
 
 .button-add-account:hover {
   background-color: #0fd89c;

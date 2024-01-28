@@ -6,25 +6,38 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 20px 0;
-  width: auto;
+  margin: 20px;
 }
 
 .account-inputs {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 40%;
 }
-
-.input-username .input-password {
+.account-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input-username,
+.input-password {
   font-size: 16px;
   padding: 5px;
-  width: 100%;
+  margin: 0;
   background-color: white;
   border-radius: 2px;
   border: 1px solid #525252;
   height: auto;
   text-align: center;
   color: #f39c56;
+}
+
+.input-password:disabled {
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #525252;
 }
 
 .account-input-descriptor {
@@ -59,6 +72,10 @@
   font-size: 18px;
   padding: 5px 0 0 0px;
   cursor: pointer;
+}
+
+.display-flex {
+  display: flex;
 }
 
 .button-account-edit:hover {
@@ -122,11 +139,28 @@
 }
 
 @media (max-width: 767px) {
-  .add-account-form {
+  .account-container {
     flex-direction: column;
     align-items: start;
   }
-
+  .account-inputs {
+    min-height: 120px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+  }
+  .account-buttons {
+    margin-top: 15px;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+  }
+  .delete-account-button {
+    margin-left: 0;
+  }
+  .change-button {
+    margin-left: 0;
+  }
   .input-password .input-username {
     width: 100%;
   }

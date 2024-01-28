@@ -10,33 +10,31 @@ const AdminModal = ({ onChangeView, view, isOpen, onClose, children }) => {
             <span className="admin-close-button" onClick={onClose}>
               &times;
             </span>
-            <div className="modal-content">
-              <div className="panel">
-                <div className="top">
-                  <div className="list">
-                    <div
-                      className={`item ${view === "general" && "selected"}`}
-                      onClick={(event) => onChangeView("general", event)}
-                    >
-                      GENERAL
-                    </div>
-                    <div
-                      className={`item ${view === "accounts" && "selected"}`}
-                      onClick={(event) => onChangeView("accounts", event)}
-                    >
-                      ACCOUNTS
-                    </div>
-                    <div
-                      className={`item ${view === "smtp" && "selected"}`}
-                      onClick={(event) => onChangeView("smtp", event)}
-                    >
-                      SMTP
-                    </div>
+            <div className="panel">
+              <div className="top">
+                <div className="list">
+                  <div
+                    className={`item ${view === "general" && "selected"}`}
+                    onClick={(event) => onChangeView("general", event)}
+                  >
+                    GENERAL
+                  </div>
+                  <div
+                    className={`item ${view === "accounts" && "selected"}`}
+                    onClick={(event) => onChangeView("accounts", event)}
+                  >
+                    ACCOUNTS
+                  </div>
+                  <div
+                    className={`item ${view === "smtp" && "selected"}`}
+                    onClick={(event) => onChangeView("smtp", event)}
+                  >
+                    SMTP
                   </div>
                 </div>
-                <div className="view">{children}</div>
               </div>
             </div>
+            {children}
           </div>
         </div>,
         document.body
