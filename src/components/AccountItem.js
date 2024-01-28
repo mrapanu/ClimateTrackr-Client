@@ -8,6 +8,7 @@ const AccountItem = ({ data }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
   const [password, setPassword] = useState("**********");
   const [type, setType] = useState(data.role);
+  const [message, setMessage] = useState("");
   const [pwEnabled, setPwEnabled] = useState(false);
   const [typeEnabled, setTypeEnabled] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -32,16 +33,26 @@ const AccountItem = ({ data }) => {
   };
 
   const changePassword = () => {
-    // TO DO
     if (password === "") {
       setShowError(true);
     } else {
       setShowError(false);
+      changePasswordAsync(data.username, password, apiUrl, setMessage);
+      setPwEnabled(false);
+      const timeoutId = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+      return () => clearTimeout(timeoutId);
     }
   };
 
   const changeUserType = () => {
-    //TO DO
+    changeTypeAsync(data.username, type, apiUrl, setMessage);
+    setTypeEnabled(false);
+    const timeoutId = setTimeout(() => {
+      setMessage("");
+    }, 5000);
+    return () => clearTimeout(timeoutId);
   };
 
   const deleteUser = () => {
@@ -95,6 +106,9 @@ const AccountItem = ({ data }) => {
           </button>
         </div>
       </div>
+      <div className="display-flex">
+        <div className="message">{message}</div>
+      </div>
       <div className="account-buttons">
         {pwEnabled && (
           <button className="change-button" onClick={changePassword}>
@@ -131,6 +145,44 @@ const deleteUserAsync = async (username, url, dispatch, state) => {
       type: "UPDATE_ACCOUNT_DATA",
       payload: JSON.parse(JSON.stringify(updatedAccounts)),
     });
+  }
+};
+
+const changePasswordAsync = async (username, password, url, setMessage) => {
+  const userData = {
+    username: username,
+    newPassword: password,
+  };
+  const response = await fetch(`${url}Auth/ChangePassword`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify(userData),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    setMessage(resData.message);
+  }
+};
+
+const changeTypeAsync = async (username, role, url, setMessage) => {
+  const userData = {
+    username: username,
+    role: parseInt(role),
+  };
+  const response = await fetch(`${url}Auth/ChangeRole`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify(userData),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    setMessage(resData.message);
   }
 };
 

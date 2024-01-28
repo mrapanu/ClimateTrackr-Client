@@ -34,6 +34,12 @@
   color: #f39c56;
 }
 
+.message {
+  color: #47ffa3;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .input-password:disabled {
   background-color: white;
   border-radius: 2px;
