@@ -1,11 +1,10 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
+import { Ctx } from "../../util/reducer";
 import { FaPen } from "react-icons/fa";
-import { getAuthToken } from "../util/auth";
-import "./EditRoom.css";
-import { Ctx } from "../util/reducer";
+import { renameRoomAsync, deleteRoomAsync } from "../../util/api";
+import "./ModalRoomItem.css";
 
-const EditRoom = ({ data }) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+const ModalRoomItem = ({ data }) => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState(data.roomName);
   const [showError, setShowError] = useState(false);
@@ -14,7 +13,6 @@ const EditRoom = ({ data }) => {
 
   useEffect(() => {
     if (isEdit && inputRef.current) {
-      // Use setTimeout to focus after the input is fully rendered
       setTimeout(() => {
         inputRef.current.focus();
       }, 0);
@@ -33,7 +31,7 @@ const EditRoom = ({ data }) => {
 
   const renameRoom = (id, inputVal) => {
     if (inputVal.trim() !== "") {
-      renameRoomAsync(id, inputVal, apiUrl, state, dispatch);
+      renameRoomAsync(id, inputVal, state.url, state, dispatch);
       setIsEdit(false);
       setShowError(false);
     } else {
@@ -42,7 +40,7 @@ const EditRoom = ({ data }) => {
   };
 
   const deleteRoom = (id) => {
-    deleteRoomAsync(id, apiUrl, dispatch);
+    deleteRoomAsync(id, state.url, dispatch);
   };
 
   return (
@@ -88,47 +86,4 @@ const EditRoom = ({ data }) => {
   );
 };
 
-const deleteRoomAsync = async (id, url, dispatch) => {
-  const response = await fetch(`${url}RoomConfig/DeleteRoom?roomId=` + id, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-  });
-  const resData = await response.json();
-  dispatch({
-    type: "UPDATE_ROOM_DATA",
-    payload: JSON.parse(JSON.stringify(resData.data)),
-  });
-};
-
-const renameRoomAsync = async (id, roomFromInput, url, state, dispatch) => {
-  const roomData = {
-    id: id,
-    name: roomFromInput,
-  };
-  const response = await fetch(`${url}RoomConfig/RenameRoom`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-    body: JSON.stringify(roomData),
-  });
-  const resData = await response.json();
-  if (resData.success) {
-    const updatedState = state.roomData.map((i) => {
-      if (i.id === id) {
-        i.roomName = resData.data.roomName;
-      }
-      return i;
-    });
-    dispatch({
-      type: "UPDATE_ROOM_DATA",
-      payload: updatedState,
-    });
-  }
-};
-
-export default EditRoom;
+export default ModalRoomItem;

@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { FaPen } from "react-icons/fa";
-import { getAuthToken } from "../util/auth";
-import { Ctx } from "../util/reducer";
+import {
+  deleteUserAsync,
+  changePasswordAsync,
+  changeTypeAsync,
+} from "../../util/api";
+import { Ctx } from "../../util/reducer";
 import "./AccountItem.css";
 
 const AccountItem = ({ data }) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
   const [password, setPassword] = useState("**********");
   const [type, setType] = useState(data.role);
   const [message, setMessage] = useState("");
@@ -13,6 +16,7 @@ const AccountItem = ({ data }) => {
   const [typeEnabled, setTypeEnabled] = useState(false);
   const [showError, setShowError] = useState(false);
   const { state, dispatch } = useContext(Ctx);
+
   const enablePasswordChange = () => {
     setPwEnabled(!pwEnabled);
     setTypeEnabled(false);
@@ -37,7 +41,7 @@ const AccountItem = ({ data }) => {
       setShowError(true);
     } else {
       setShowError(false);
-      changePasswordAsync(data.username, password, apiUrl, setMessage);
+      changePasswordAsync(data.username, password, state.url, setMessage);
       setPwEnabled(false);
       const timeoutId = setTimeout(() => {
         setMessage("");
@@ -47,7 +51,7 @@ const AccountItem = ({ data }) => {
   };
 
   const changeUserType = () => {
-    changeTypeAsync(data.username, type, apiUrl, setMessage);
+    changeTypeAsync(data.username, type, state.url, setMessage);
     setTypeEnabled(false);
     const timeoutId = setTimeout(() => {
       setMessage("");
@@ -56,15 +60,13 @@ const AccountItem = ({ data }) => {
   };
 
   const deleteUser = () => {
-    deleteUserAsync(data.username, apiUrl, dispatch, state);
+    deleteUserAsync(data.username, state.url, dispatch, state);
   };
 
   return (
     <div className="account-container">
       <div className="account-inputs">
-        <div className="display-flex">
-          <div className="account-username-text">{data.username}</div>
-        </div>
+        <div className="account-username-text">{data.username}</div>
         <div className="display-flex">
           {pwEnabled ? (
             <input
@@ -126,64 +128,6 @@ const AccountItem = ({ data }) => {
       </div>
     </div>
   );
-};
-
-const deleteUserAsync = async (username, url, dispatch, state) => {
-  const response = await fetch(`${url}Auth/DeleteUser?username=` + username, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-  });
-  const resData = await response.json();
-  if (resData.success) {
-    const updatedAccounts = state.accountData.filter(
-      (i) => i.username !== username
-    );
-    dispatch({
-      type: "UPDATE_ACCOUNT_DATA",
-      payload: JSON.parse(JSON.stringify(updatedAccounts)),
-    });
-  }
-};
-
-const changePasswordAsync = async (username, password, url, setMessage) => {
-  const userData = {
-    username: username,
-    newPassword: password,
-  };
-  const response = await fetch(`${url}Auth/ChangePassword`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-    body: JSON.stringify(userData),
-  });
-  const resData = await response.json();
-  if (resData.success) {
-    setMessage(resData.message);
-  }
-};
-
-const changeTypeAsync = async (username, role, url, setMessage) => {
-  const userData = {
-    username: username,
-    role: parseInt(role),
-  };
-  const response = await fetch(`${url}Auth/ChangeRole`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-    body: JSON.stringify(userData),
-  });
-  const resData = await response.json();
-  if (resData.success) {
-    setMessage(resData.message);
-  }
 };
 
 export default AccountItem;

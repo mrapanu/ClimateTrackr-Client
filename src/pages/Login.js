@@ -1,13 +1,14 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/Forms/LoginForm";
 import { json, redirect } from "react-router-dom";
-import PageContent from "../components/PageContent";
-function LoginPage() {
+import PageContent from "../layout/PageContent";
+
+const LoginPage = () => {
   return (
     <PageContent isHome={false}>
       <LoginForm />
     </PageContent>
   );
-}
+};
 export default LoginPage;
 
 export async function loginAction({ request }) {

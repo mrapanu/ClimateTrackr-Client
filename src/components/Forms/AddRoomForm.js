@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
-import { getAuthToken } from "../util/auth";
-import "./AddRoom.css";
-import { Ctx } from "../util/reducer";
+import { Ctx } from "../../util/reducer";
+import { addRoomAsync } from "../../util/api";
+import "./AddRoomForm.css";
 
-const AddRoom = ({ windowNumber }) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+const AddRoomForm = ({ windowNumber }) => {
   const [inputValue, setInputValue] = useState("");
   const [showError, setShowError] = useState(false);
-  const { dispatch } = useContext(Ctx);
+  const { state, dispatch } = useContext(Ctx);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -16,7 +15,7 @@ const AddRoom = ({ windowNumber }) => {
 
   const addRoom = (windowNumber, inputVal) => {
     if (inputVal !== "") {
-      addRoomAsync(windowNumber, inputVal, apiUrl, dispatch);
+      addRoomAsync(windowNumber, inputVal, state.url, dispatch);
       setInputValue("");
       setShowError(false);
     } else {
@@ -48,26 +47,4 @@ const AddRoom = ({ windowNumber }) => {
   );
 };
 
-const addRoomAsync = async (window, roomFromInput, url, dispatch) => {
-  const roomData = {
-    window: window,
-    roomName: roomFromInput,
-  };
-  const response = await fetch(`${url}RoomConfig/AddRoom`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-    body: JSON.stringify(roomData),
-  });
-  const resData = await response.json();
-  if (resData.success) {
-    dispatch({
-      type: "UPDATE_ROOM_DATA",
-      payload: resData.data,
-    });
-  }
-};
-
-export default AddRoom;
+export default AddRoomForm;

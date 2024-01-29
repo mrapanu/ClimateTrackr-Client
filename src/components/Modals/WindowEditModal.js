@@ -1,41 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useEffect, useContext } from "react";
-import { getAuthToken } from "../util/auth";
-import { Ctx } from "../util/reducer";
-import "./EditModal.css";
-import EditRoom from "./EditRoom";
-import AddRoom from "./AddRoom";
+import { Ctx } from "../../util/reducer";
+import { getRoomsFromWindowAsync } from "../../util/api";
+import ModalRoomItem from "../Items/ModalRoomItem";
+import AddRoom from "../Forms/AddRoomForm";
+import "./WindowEditModal.css";
 
-const EditModal = ({ isOpen, onClose, windowNumber }) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+const WindowEditModal = ({ isOpen, onClose, windowNumber }) => {
   const { state, dispatch } = useContext(Ctx);
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "UPDATE_ROOM_DATA", payload: [] });
-      const response = await fetch(
-        `${apiUrl}RoomConfig/GetRoomsFromWindow?window=` + windowNumber,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + getAuthToken(),
-          },
-        }
-      );
-      const resData = await response.json();
-      if (resData.data === null) {
-        dispatch({ type: "UPDATE_ROOM_DATA", payload: [] });
-      } else {
-        dispatch({
-          type: "UPDATE_ROOM_DATA",
-          payload: JSON.parse(JSON.stringify(resData.data)),
-        });
-      }
-    };
-    isOpen && fetchData();
-  }, [apiUrl, isOpen, dispatch, windowNumber]);
+    isOpen && getRoomsFromWindowAsync(state.url, windowNumber, dispatch);
+  }, [state.url, isOpen, dispatch, windowNumber]);
+
   return isOpen
     ? ReactDOM.createPortal(
         <div className="edit-modal-container">
@@ -47,7 +25,7 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
             <div className="title">Window {windowNumber} - Room Management</div>
             {state.roomData.length !== 0 ? (
               state.roomData.map((i) => (
-                <EditRoom key={i.id} data={i}></EditRoom>
+                <ModalRoomItem key={i.id} data={i}></ModalRoomItem>
               ))
             ) : (
               <div>
@@ -73,4 +51,4 @@ const EditModal = ({ isOpen, onClose, windowNumber }) => {
     : null;
 };
 
-export default EditModal;
+export default WindowEditModal;

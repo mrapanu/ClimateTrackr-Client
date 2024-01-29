@@ -3,6 +3,7 @@ import React, { createContext, useReducer } from "react";
 export const Ctx = createContext();
 
 const initialState = {
+  url: process.env.REACT_APP_API_URL,
   isEditMode: false,
   isNight: false,
   isAdmin: false,

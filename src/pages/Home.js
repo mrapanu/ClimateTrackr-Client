@@ -1,24 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
-import PageContent from "../components/PageContent";
-import "./Home.css";
 import { Ctx } from "../util/reducer";
-import Room from "../components/Room";
 import { getAuthToken } from "../util/auth";
-import EditModal from "../components/EditModal";
+import HomeRoomItem from "../components/Items/HomeRoomItem";
+import WindowEditModal from "../components/Modals/WindowEditModal";
+import PageContent from "../layout/PageContent";
+import "./Home.css";
+
 function HomePage() {
-  const apiUrl = process.env.REACT_APP_API_URL;
   const { state } = useContext(Ctx);
   const [configData, setConfigData] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [windowNumber, setWindowNumber] = useState("");
 
   useEffect(() => {
-    fetchData(apiUrl, setConfigData);
+    fetchData(state.url, setConfigData);
     const intervalId = setInterval(() => {
-      fetchData(apiUrl, setConfigData);
+      fetchData(state.url, setConfigData);
     }, 120000);
     return () => clearInterval(intervalId);
-  }, [apiUrl]);
+  }, [state.url]);
 
   const openModal = (value) => {
     setModalOpen(true);
@@ -27,7 +27,7 @@ function HomePage() {
 
   const closeModal = () => {
     setModalOpen(false);
-    fetchData(apiUrl, setConfigData);
+    fetchData(state.url, setConfigData);
   };
 
   return (
@@ -47,7 +47,9 @@ function HomePage() {
           {configData.lenght !== 0 &&
             configData
               .filter((item) => item.window === 1)
-              .map((i) => <Room key={i.id} roomName={i.roomName}></Room>)}
+              .map((i) => (
+                <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
+              ))}
         </div>
         <div className="window" id="window2">
           {state.isEditMode && state.isAdmin && (
@@ -63,7 +65,9 @@ function HomePage() {
           {configData.lenght !== 0 &&
             configData
               .filter((item) => item.window === 2)
-              .map((i) => <Room key={i.id} roomName={i.roomName}></Room>)}
+              .map((i) => (
+                <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
+              ))}
         </div>
         <div className="window" id="window3">
           {state.isEditMode && state.isAdmin && (
@@ -79,7 +83,9 @@ function HomePage() {
           {configData.lenght !== 0 &&
             configData
               .filter((item) => item.window === 3)
-              .map((i) => <Room key={i.id} roomName={i.roomName}></Room>)}
+              .map((i) => (
+                <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
+              ))}
         </div>
         <div className="window" id="window4">
           {state.isEditMode && state.isAdmin && (
@@ -95,14 +101,16 @@ function HomePage() {
           {configData.lenght !== 0 &&
             configData
               .filter((item) => item.window === 4)
-              .map((i) => <Room key={i.id} roomName={i.roomName}></Room>)}
+              .map((i) => (
+                <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
+              ))}
         </div>
       </div>
-      <EditModal
+      <WindowEditModal
         isOpen={isModalOpen}
         onClose={closeModal}
         windowNumber={windowNumber}
-      ></EditModal>
+      ></WindowEditModal>
     </PageContent>
   );
 }
