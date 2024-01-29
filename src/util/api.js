@@ -261,6 +261,35 @@ export const getThCurrentDataAsync = async (roomName, setTemp, setHum, url) => {
   }
 };
 
+export const getThCurrentAsync = async (roomName, setTemp, setHum, url) => {
+  const time = new Date();
+  const convertedTime =
+    time.toLocaleDateString() +
+    " " +
+    time.toLocaleTimeString(undefined, { hour12: false });
+  const response = await fetch(
+    `${url}TempAndHum/GetCurrentData?currenttime=` +
+      convertedTime.slice(0, 19).replace("T", " ") +
+      "&room=" +
+      roomName,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    }
+  );
+  const resData = await response.json();
+  if (resData.data === null) {
+    setTemp("NA");
+    setHum("NA");
+  } else {
+    setTemp(resData.data.temperature + "°C");
+    setHum(resData.data.humidity + "%");
+  }
+};
+
 export const getThByIntervalAsync = async (
   room,
   apiUrl,
