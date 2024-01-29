@@ -306,4 +306,49 @@ export const getThByIntervalAsync = async (
   }
 };
 
+export const getThByIntervalCustomAsync = async (
+  room,
+  apiUrl,
+  from,
+  to,
+  setData
+) => {
+  const start = new Date(to.getTime());
+  const end = new Date(from.getTime());
+  const convertedEnd =
+    end.toLocaleDateString() +
+    " " +
+    end.toLocaleTimeString(undefined, { hour12: false });
+  const convertedStart =
+    start.toLocaleDateString() +
+    " " +
+    start.toLocaleTimeString(undefined, { hour12: false });
+  try {
+    const response = await fetch(
+      `${apiUrl}TempAndHum/GetByDate?timeStart=` +
+        convertedEnd.slice(0, 19).replace("T", " ") +
+        "&timeEnd=" +
+        convertedStart.slice(0, 19).replace("T", " ") +
+        "&room=" +
+        room,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
+        },
+      }
+    );
+    const resData = await response.json();
+    if (resData.data === null) {
+      setData([]);
+    } else {
+      setData(JSON.parse(JSON.stringify(resData.data)));
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
 /* END OF TEMPERATURE & HUMIDITY API CALLS SECTION */

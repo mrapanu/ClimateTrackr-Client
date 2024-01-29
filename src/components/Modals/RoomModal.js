@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import { Ctx } from "../../util/reducer";
-import { getThByIntervalAsync } from "../../util/api";
+import {
+  getThByIntervalAsync,
+  getThByIntervalCustomAsync,
+} from "../../util/api";
 import TemperatureGraph from "../Graphs/TemperatureGraph";
 import HumidityGraph from "../Graphs/HumidityGraph";
 import SelectTimeRange from "../Graphs/SelectTimeRange";
@@ -16,11 +19,26 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
     setSelectedTimeRange(value);
   };
 
+  const handleShowCustomData = (customFromDate, customUntilDate) => {
+    if (customFromDate !== null && customUntilDate !== null) {
+      getThByIntervalCustomAsync(
+        roomName,
+        state.url,
+        customFromDate,
+        customUntilDate,
+        setData
+      );
+      setSelectedTimeRange("");
+    }
+  };
+
   useEffect(() => {
     isOpen &&
+      selectedTimeRange !== "" &&
       getThByIntervalAsync(roomName, state.url, selectedTimeRange, setData);
     const intervalId = setInterval(() => {
       isOpen &&
+        selectedTimeRange !== "" &&
         getThByIntervalAsync(roomName, state.url, selectedTimeRange, setData);
     }, 120000);
     return () => clearInterval(intervalId);
@@ -39,6 +57,7 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
               <SelectTimeRange
                 value={selectedTimeRange}
                 onChange={handleTimeRangeChange}
+                handleShowCustomData={handleShowCustomData}
               ></SelectTimeRange>
             </div>
             {isOpen && <TemperatureGraph data={data}></TemperatureGraph>}

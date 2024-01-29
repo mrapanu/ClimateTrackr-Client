@@ -23,7 +23,7 @@ const HumidityGraph = ({ data }) => {
 
   return (
     <div>
-      <h2>Humidity Chart</h2>
+      <div className="chart-title">Humidity Chart</div>
       <ResponsiveContainer
         width="100%"
         height={window.innerWidth < 600 ? 220 : 270}

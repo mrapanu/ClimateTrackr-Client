@@ -23,7 +23,7 @@ const TemperatureGraph = ({ data }) => {
 
   return (
     <div>
-      <h2>Temperature Chart</h2>
+      <div className="chart-title">Temperature Chart</div>
       <ResponsiveContainer
         width="100%"
         height={window.innerWidth < 600 ? 220 : 270}
