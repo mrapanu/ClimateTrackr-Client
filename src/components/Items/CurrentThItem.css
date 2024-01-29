@@ -1,0 +1,68 @@
+.current-th-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  min-width: 240px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.th-time {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  color: #525252;
+  font-weight: 650;
+  width: 100%;
+  height: 70%;
+  border-radius: 8px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.th-temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 650;
+  background-color: #f39c56;
+  width: 100%;
+  height: 70%;
+  margin-right: 5px;
+  border-radius: 8px;
+}
+
+.th-humidity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(74, 212, 247);
+  color: white;
+  font-weight: 650;
+  text-align: center;
+  width: 100%;
+  height: 70%;
+  border-radius: 8px;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 1080px) {
+  .current-th-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    align-items: center;
+    background-color: white;
+    min-width: 140px;
+    text-align: center;
+    margin-right: 15px;
+  }
+  .th-time {
+    display: none;
+  }
+}
