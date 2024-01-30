@@ -62,7 +62,7 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
             >
               {isLoggedIn && (
                 <li className={isNightTime ? "night" : "day"}>
-                  <button className="navButton">Settings</button>
+                  <button className="navButton">My Account</button>
                 </li>
               )}
               {isLoggedIn && isAdmin && (

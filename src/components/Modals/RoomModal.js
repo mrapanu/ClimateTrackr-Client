@@ -59,7 +59,7 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
               &times;
             </span>
             <div>
-              <div className="display-flex">
+              <div className="title-th-container">
                 <div className="room-title">{roomName}</div>
                 <CurrentThItem temp={temp} hum={hum}></CurrentThItem>
               </div>

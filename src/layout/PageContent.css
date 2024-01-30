@@ -7,50 +7,50 @@
 }
 
 .body-container.day {
-  background-image: url("../../public/day-desktop.png");
+  background-image: url("../../public/day-desktop.webp");
 }
 
 .body-container.night {
-  background-image: url("../../public/night-desktop.png");
+  background-image: url("../../public/night-desktop.webp");
 }
 
 /* Styles for phones in portrait mode */
 @media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
   .body-container.day {
-    background-image: url("../../public/day-phone-portrait.png");
+    background-image: url("../../public/day-phone-portrait.webp");
   }
   .body-container.night {
-    background-image: url("../../public/night-phone-portrait.png");
+    background-image: url("../../public/night-phone-portrait.webp");
   }
 }
 
 /* Styles for phones in landscape mode */
 @media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
   .body-container.day {
-    background-image: url("../../public/day-phone-landscape.png");
+    background-image: url("../../public/day-phone-landscape.webp");
   }
   .body-container.night {
-    background-image: url("../../public/night-phone-landscape.png");
+    background-image: url("../../public/night-phone-landscape.webp");
   }
 }
 
 /* Styles for tablets in portrait mode */
 @media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
   .body-container.day {
-    background-image: url("../../public/day-tablet-portrait.png");
+    background-image: url("../../public/day-tablet-portrait.webp");
   }
   .body-container.night {
-    background-image: url("../../public/night-tablet-portrait.png");
+    background-image: url("../../public/night-tablet-portrait.webp");
   }
 }
 
 /* Styles for tablets in landscape mode */
 @media only screen and (min-device-width: 1021px) and (max-device-width: 1400px) and (orientation: landscape) {
   .body-container.day {
-    background-image: url("../../public/day-tablet-landscape.png");
+    background-image: url("../../public/day-tablet-landscape.webp");
   }
   .body-container.night {
-    background-image: url("../../public/night-tablet-landscape.png");
+    background-image: url("../../public/night-tablet-landscape.webp");
   }
 }
 
