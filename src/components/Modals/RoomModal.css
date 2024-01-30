@@ -10,6 +10,13 @@
   justify-content: center;
 }
 
+.display-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 .room-modal-content {
   top: 0;
   left: 0;
@@ -56,11 +63,12 @@
 }
 
 .room-title {
+  display: flex;
+  flex-direction: row;
   font-size: 28px;
   font-weight: bold;
   padding: 5px 0;
   color: #525252;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 1080px) {
@@ -68,5 +76,8 @@
     width: 90vw;
     max-width: 90%;
     overflow-y: auto;
+  }
+  .room-title {
+    font-size: 26px;
   }
 }

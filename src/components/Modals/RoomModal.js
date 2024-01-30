@@ -4,15 +4,19 @@ import { Ctx } from "../../util/reducer";
 import {
   getThByIntervalAsync,
   getThByIntervalCustomAsync,
+  getThCurrentAsync,
 } from "../../util/api";
 import TemperatureGraph from "../Graphs/TemperatureGraph";
 import HumidityGraph from "../Graphs/HumidityGraph";
 import SelectTimeRange from "../Graphs/SelectTimeRange";
 import "./RoomModal.css";
+import CurrentThItem from "../Items/CurrentThItem";
 
 const RoomModal = ({ roomName, isOpen, onClose }) => {
   const { state } = useContext(Ctx);
   const [data, setData] = useState([]);
+  const [temp, setTemp] = useState("NA");
+  const [hum, setHum] = useState("NA");
   const [selectedTimeRange, setSelectedTimeRange] = useState("10800000");
 
   const handleTimeRangeChange = (value) => {
@@ -33,6 +37,7 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
   };
 
   useEffect(() => {
+    isOpen && getThCurrentAsync(roomName, setTemp, setHum, state.url);
     isOpen &&
       selectedTimeRange !== "" &&
       getThByIntervalAsync(roomName, state.url, selectedTimeRange, setData);
@@ -40,9 +45,10 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
       isOpen &&
         selectedTimeRange !== "" &&
         getThByIntervalAsync(roomName, state.url, selectedTimeRange, setData);
+      isOpen && getThCurrentAsync(roomName, setTemp, setHum, state.url);
     }, 120000);
     return () => clearInterval(intervalId);
-  }, [roomName, state.url, selectedTimeRange, isOpen]);
+  }, [roomName, state.url, selectedTimeRange, isOpen, setHum, setTemp]);
 
   return isOpen
     ? ReactDOM.createPortal(
@@ -53,7 +59,11 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
               &times;
             </span>
             <div>
-              <div className="room-title">{roomName}</div>
+              <div className="display-flex">
+                <div className="room-title">{roomName}</div>
+                <CurrentThItem temp={temp} hum={hum}></CurrentThItem>
+              </div>
+
               <SelectTimeRange
                 value={selectedTimeRange}
                 onChange={handleTimeRangeChange}
