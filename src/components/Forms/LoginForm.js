@@ -11,12 +11,12 @@ const LoginForm = () => {
     <div className="form-container">
       <Form method="post" className="form">
         <h2 className={`login-header ${state.isNight ? "night" : ""}`}>
-          ClimateTrackr
+          °ClimateTrackr
         </h2>
 
         <div className="inputGroup">
           <input
-            className="input"
+            className="input-form"
             type="text"
             id="username"
             name="username"
@@ -26,7 +26,7 @@ const LoginForm = () => {
 
         <div className="inputGroup">
           <input
-            className="input"
+            className="input-form"
             type="password"
             id="password"
             name="password"

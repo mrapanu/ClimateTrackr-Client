@@ -12,8 +12,8 @@
   bottom: 0%;
   width: 70%;
   height: 40%;
-  max-width: 400px;
-  max-height: 350px;
+  max-width: 420px;
+  max-height: 360px;
   padding: 20px;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
@@ -32,7 +32,7 @@
   padding: 0 20%;
 }
 
-.input {
+.input-form {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -83,5 +83,108 @@
   }
   .login-header {
     color: #191813;
+  }
+}
+
+/* TABLETS */
+@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .form {
+    width: 70%;
+    height: 50%;
+    padding: 10px;
+    max-width: 450px;
+    max-height: 400px;
+  }
+  .error {
+    font-size: 18px;
+    padding-top: 0;
+  }
+}
+
+@media only screen and (min-device-width: 1023px) and (max-device-width: 1400px) and (orientation: landscape) {
+  .form {
+    top: 7%;
+    width: 70%;
+    height: 40%;
+    padding: 10px;
+    max-width: 400px;
+    max-height: 380px;
+  }
+  .inputGroup {
+    margin-bottom: 10px;
+  }
+  .input-form {
+    width: 100%;
+    padding: 10px;
+  }
+  .loginButton {
+    padding: 10px 0;
+    margin: 0;
+  }
+}
+
+/* PHONES */
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
+  .form {
+    width: 70%;
+    height: 40%;
+    padding: 10px;
+    max-width: 220px;
+    max-height: 260px;
+  }
+
+  .login-header {
+    margin-bottom: 15px;
+    font-size: 25px;
+  }
+
+  .btnContainer {
+    padding: 0 10%;
+  }
+  .inputGroup {
+    margin-bottom: 15px;
+    padding: 0 10%;
+  }
+  .error {
+    font-size: 14px;
+    padding-top: 0;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
+  .form {
+    top: 7%;
+    width: 70%;
+    height: 60%;
+    padding: 10px;
+    max-width: 245px;
+    max-height: 170px;
+  }
+
+  .login-header {
+    padding: 0;
+    margin-bottom: 5px;
+    margin-top: 0;
+    font-size: 20px;
+  }
+
+  .btnContainer {
+    padding: 0 10%;
+  }
+  .inputGroup {
+    margin-bottom: 10px;
+    padding: 0 10%;
+  }
+  .input-form {
+    width: 100%;
+    padding: 5px;
+  }
+  .loginButton {
+    padding: 5px 0;
+    margin: 0;
+  }
+  .error {
+    font-size: 14px;
+    padding-top: 0;
   }
 }
