@@ -59,6 +59,7 @@ const SelectTimeRange = ({ value, onChange, handleShowCustomData }) => {
             showTimeSelect
             dateFormat="Pp"
             popperPlacement="center"
+            className="input-select"
           />
 
           <div className="datepicker-descriptor">To:</div>
@@ -69,6 +70,7 @@ const SelectTimeRange = ({ value, onChange, handleShowCustomData }) => {
             showTimeSelect
             dateFormat="Pp"
             popperPlacement="center"
+            className="input-select"
           />
           <button className="get-th-button" onClick={handleCustomData}>
             Apply

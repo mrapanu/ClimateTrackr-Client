@@ -74,7 +74,7 @@ option:hover {
   border: none;
 }
 
-input {
+.input-select {
   font-size: 16px;
   padding: 5px;
   margin: 0;

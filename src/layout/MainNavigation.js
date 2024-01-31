@@ -44,16 +44,18 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
     <>
       <header className={isNightTime ? "night" : "day"}>
         <NavLink className={isNightTime ? "night" : "day"} to="/">
-          <div className="site-title">ClimateTrackr</div>
+          <div className="site-title">°ClimateTrackr</div>
         </NavLink>
 
         <nav className={isNightTime ? "night" : "day"}>
-          <div
-            className={isNightTime ? "nav-toggle night" : " nav-toggle day"}
-            onClick={toggleNav}
-          >
-            ☰ Menu
-          </div>
+          {isLoggedIn && (
+            <div
+              className={isNightTime ? "nav-toggle night" : " nav-toggle day"}
+              onClick={toggleNav}
+            >
+              ☰ Menu
+            </div>
+          )}
           <div onClick={onCloseNav}>
             <ul
               className={`${isNavActive ? "active" : ""} ${
