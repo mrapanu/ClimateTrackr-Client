@@ -1,0 +1,112 @@
+.profile-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-width: 45%;
+  min-height: 400px;
+  background-color: white;
+  border: 2px solid #525252;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.pf-info-title {
+  font-size: 22px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #f39c56;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 10px;
+  margin: 10px 20%;
+}
+
+.pf-info-description {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 35%;
+}
+
+.pf-info-value,
+.pf-info-input {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #4ad4f7;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 50%;
+}
+
+.pf-info-input {
+  background-color: white;
+  border: 1px solid #525252;
+  min-width: calc(50% - 2px);
+}
+
+.pf-info-input::placeholder {
+  color: #4ad4f7;
+}
+
+.info-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttons-pf-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 1%;
+}
+
+.button-save {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  margin: 5px 10px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid white;
+  border-radius: 5px;
+  min-width: 25%;
+  cursor: pointer;
+}
+
+.button-cancel {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  margin: 5px 10px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid white;
+  border-radius: 5px;
+  min-width: 25%;
+  cursor: pointer;
+}
+
+.button-cancel:hover {
+  background-color: tomato;
+  border: 1px solid tomato;
+}
+
+.button-save:hover {
+  background-color: #0fd89c;
+  border: 1px solid #0fd89c;
+}
