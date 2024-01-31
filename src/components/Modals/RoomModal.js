@@ -58,18 +58,15 @@ const RoomModal = ({ roomName, isOpen, onClose }) => {
             <span className="room-close-button" onClick={onClose}>
               &times;
             </span>
-            <div>
-              <div className="title-th-container">
-                <div className="room-title">{roomName}</div>
-                <CurrentThItem temp={temp} hum={hum}></CurrentThItem>
-              </div>
-
-              <SelectTimeRange
-                value={selectedTimeRange}
-                onChange={handleTimeRangeChange}
-                handleShowCustomData={handleShowCustomData}
-              ></SelectTimeRange>
+            <div className="title-th-container">
+              <div className="room-title">{roomName}</div>
+              <CurrentThItem temp={temp} hum={hum}></CurrentThItem>
             </div>
+            <SelectTimeRange
+              value={selectedTimeRange}
+              onChange={handleTimeRangeChange}
+              handleShowCustomData={handleShowCustomData}
+            ></SelectTimeRange>
             {isOpen && <TemperatureGraph data={data}></TemperatureGraph>}
             {isOpen && <HumidityGraph data={data}></HumidityGraph>}
           </div>

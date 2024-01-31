@@ -5,10 +5,12 @@ import { Ctx } from "../util/reducer";
 import AdminModal from "../components/Modals/AdminModal";
 import AccountPanel from "../components/Panels/AccountPanel";
 import "./MainNavigation.css";
+import MyAccountModal from "../components/Modals/MyAccountModal";
 
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
   const [adminModal, setAdminModal] = useState(false);
+  const [myAccountModal, setMyAccountModal] = useState(false);
   const [view, setView] = useState("general");
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Ctx);
@@ -27,6 +29,14 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
     dispatch({ type: "LOGOUT" });
     localStorage.removeItem("token");
     navigate("/login");
+  };
+
+  const openMyAccountModal = () => {
+    setMyAccountModal(true);
+  };
+
+  const closeMyAccountModal = () => {
+    setMyAccountModal(false);
   };
 
   const openAdminModal = () => {
@@ -64,7 +74,9 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
             >
               {isLoggedIn && (
                 <li className={isNightTime ? "night" : "day"}>
-                  <button className="navButton">My Account</button>
+                  <button className="navButton" onClick={openMyAccountModal}>
+                    My Account
+                  </button>
                 </li>
               )}
               {isLoggedIn && isAdmin && (
@@ -110,6 +122,10 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
         {view === "smtp" && <h1>SMTP PANEL --- TO DO</h1>}
         {view === "accounts" && <AccountPanel />}
       </AdminModal>
+      <MyAccountModal
+        isOpen={myAccountModal}
+        onClose={closeMyAccountModal}
+      ></MyAccountModal>
     </>
   );
 };
