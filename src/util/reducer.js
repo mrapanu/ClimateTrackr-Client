@@ -7,8 +7,10 @@ const initialState = {
   isEditMode: false,
   isNight: false,
   isAdmin: false,
+  configData: [],
   roomData: [],
   accountData: [],
+  userProfile: {},
 };
 
 const reducer = (state, action) => {
@@ -21,10 +23,14 @@ const reducer = (state, action) => {
       return { ...state, isAdmin: action.payload };
     case "LOGOUT":
       return initialState;
+    case "UPDATE_ROOM_CONFIG":
+      return { ...state, configData: action.payload };
     case "UPDATE_ROOM_DATA":
       return { ...state, roomData: action.payload };
     case "UPDATE_ACCOUNT_DATA":
       return { ...state, accountData: action.payload };
+    case "UPDATE_USER_PROFILE":
+      return { ...state, userProfile: action.payload };
     default:
       return state;
   }

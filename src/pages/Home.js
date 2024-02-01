@@ -1,24 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Ctx } from "../util/reducer";
-import { getAuthToken } from "../util/auth";
+import { getUserProfileAsync, getRoomConfigDataAsync } from "../util/api";
 import HomeRoomItem from "../components/Items/HomeRoomItem";
 import WindowEditModal from "../components/Modals/WindowEditModal";
 import PageContent from "../layout/PageContent";
 import "./Home.css";
 
 function HomePage() {
-  const { state } = useContext(Ctx);
-  const [configData, setConfigData] = useState([]);
+  const { state, dispatch } = useContext(Ctx);
   const [isModalOpen, setModalOpen] = useState(false);
   const [windowNumber, setWindowNumber] = useState("");
 
   useEffect(() => {
-    fetchData(state.url, setConfigData);
+    getRoomConfigDataAsync(state.url, dispatch);
+    getUserProfileAsync(state.url, dispatch);
     const intervalId = setInterval(() => {
-      fetchData(state.url, setConfigData);
+      getRoomConfigDataAsync(state.url, dispatch);
+      getUserProfileAsync(state.url, dispatch);
     }, 120000);
     return () => clearInterval(intervalId);
-  }, [state.url]);
+  }, [state.url, dispatch]);
 
   const openModal = (value) => {
     setModalOpen(true);
@@ -27,7 +28,7 @@ function HomePage() {
 
   const closeModal = () => {
     setModalOpen(false);
-    fetchData(state.url, setConfigData);
+    getRoomConfigDataAsync(state.url, dispatch);
   };
 
   return (
@@ -44,8 +45,8 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {configData.lenght !== 0 &&
-            configData
+          {state.configData.lenght !== 0 &&
+            state.configData
               .filter((item) => item.window === 1)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
@@ -62,8 +63,8 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {configData.lenght !== 0 &&
-            configData
+          {state.configData.lenght !== 0 &&
+            state.configData
               .filter((item) => item.window === 2)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
@@ -80,8 +81,8 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {configData.lenght !== 0 &&
-            configData
+          {state.configData.lenght !== 0 &&
+            state.configData
               .filter((item) => item.window === 3)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
@@ -98,8 +99,8 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {configData.lenght !== 0 &&
-            configData
+          {state.configData.lenght !== 0 &&
+            state.configData
               .filter((item) => item.window === 4)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
@@ -118,22 +119,6 @@ function HomePage() {
 export const filterData = (data, selectedWindow) => {
   const filteredData = data.filter((item) => item.window === selectedWindow);
   return filteredData;
-};
-
-const fetchData = async (url, setConfigData) => {
-  const response = await fetch(`${url}RoomConfig/GetConfig`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAuthToken(),
-    },
-  });
-  const resData = await response.json();
-  if (resData.data === null) {
-    setConfigData([]);
-  } else {
-    setConfigData(JSON.parse(JSON.stringify(resData.data)));
-  }
 };
 
 export default HomePage;

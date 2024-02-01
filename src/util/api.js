@@ -27,6 +27,28 @@ export const getAccountsAsync = async (url, dispatch) => {
   }
 };
 
+export const getUserProfileAsync = async (url, dispatch) => {
+  const response = await fetch(`${url}Auth/GetProfileInfo`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
+  const resData = await response.json();
+  if (resData.data === null) {
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: JSON.parse(JSON.stringify({})),
+    });
+  } else {
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+  }
+};
+
 export const createUserAsync = async (
   username,
   password,
@@ -113,6 +135,68 @@ export const changePasswordAsync = async (
   }
 };
 
+export const updateProfileAsync = async (
+  email,
+  fullName,
+  url,
+  setMessage,
+  setMessageErr,
+  dispatch
+) => {
+  const userData = {
+    email: email,
+    fullName: fullName,
+  };
+  const response = await fetch(`${url}Auth/UpdateProfile`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify(userData),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+    setMessage(resData.message);
+  } else {
+    setMessageErr(resData.message);
+  }
+};
+
+export const changeUserPasswordAsync = async (
+  username,
+  oldPassword,
+  newPassword,
+  url,
+  setMessageSuccess,
+  setMessageError
+) => {
+  const userData = {
+    username: username,
+    newPassword: newPassword,
+    oldPassword: oldPassword,
+  };
+  const response = await fetch(`${url}Auth/ResetPassword`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify(userData),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    setMessageSuccess(resData.message);
+    localStorage.setItem("token", resData.data);
+  } else {
+    setMessageError(resData.message);
+  }
+};
+
 export const changeTypeAsync = async (username, role, url, setMessage) => {
   const userData = {
     username: username,
@@ -133,6 +217,25 @@ export const changeTypeAsync = async (username, role, url, setMessage) => {
 };
 
 /* START OF ROOM CONFIG API CALLS SECTION */
+
+export const getRoomConfigDataAsync = async (url, dispatch) => {
+  const response = await fetch(`${url}RoomConfig/GetConfig`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
+  const resData = await response.json();
+  if (resData.data === null) {
+    dispatch({ type: "UPDATE_ROOM_CONFIG", payload: [] });
+  } else {
+    dispatch({
+      type: "UPDATE_ROOM_CONFIG",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+  }
+};
 
 export const getRoomsFromWindowAsync = async (url, windowNumber, dispatch) => {
   dispatch({ type: "UPDATE_ROOM_DATA", payload: [] });
