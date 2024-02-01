@@ -85,6 +85,9 @@ export const createUserAsync = async (
     });
     setMessageErr("");
     setMessageSuccess(resData.message);
+  } else if (resData.errors !== undefined) {
+    setMessageErr("Password must have 6 characters minimum.");
+    setMessageSuccess("");
   } else {
     setMessageErr(resData.message);
     setMessageSuccess("");
@@ -192,6 +195,9 @@ export const changeUserPasswordAsync = async (
   if (resData.success) {
     setMessageSuccess(resData.message);
     localStorage.setItem("token", resData.data);
+  } else if (resData.errors !== undefined) {
+    setMessageError("Password must have 6 characters minimum.");
+    setMessageSuccess("");
   } else {
     setMessageError(resData.message);
   }
