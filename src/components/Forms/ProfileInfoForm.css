@@ -134,3 +134,30 @@
   border-radius: 5px;
   margin: 10px;
 }
+
+@media screen and (max-width: 1024px) {
+  .profile-info-container {
+    margin: 10px 0px;
+  }
+  .updateprofile-success,
+  .updateprofile-error,
+  .button-resetpw,
+  .button-save,
+  .button-cancel {
+    font-size: 16px;
+  }
+  .pf-info-description,
+  .pf-info-input,
+  .pf-info-value {
+    font-size: 16px;
+    font-weight: 650;
+    padding: 2px;
+    min-width: 40%;
+  }
+
+  .pf-info-title {
+    font-size: 18px;
+    font-weight: 650;
+    padding: 5px;
+  }
+}

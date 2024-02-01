@@ -82,13 +82,16 @@
   margin-top: 30px;
 }
 
-.enable-notification-description{
+.enable-notification-description {
   color: #525252;
   font-size: 20px;
 }
 
-@media screen and (max-width: 600px) {
-  .myaccount-title {
-    font-size: 26px;
+@media screen and (max-width: 1024px) {
+  .row-container {
+    flex-direction: column;
+  }
+  .enable-notification-description {
+    font-size: 18px;
   }
 }
