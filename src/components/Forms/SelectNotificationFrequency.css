@@ -1,0 +1,22 @@
+.selector-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.4);
+  margin-right: 8px;
+  align-items: center;
+}
+
+/* Style for checked checkboxes */
+input[type="checkbox"]:checked {
+  accent-color: #f39c56;
+}

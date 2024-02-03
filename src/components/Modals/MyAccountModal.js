@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import "./MyAccountModal.css";
 import ProfileInfoForm from "../Forms/ProfileInfoForm";
 import ResetPasswordForm from "../Forms/ResetPasswordForm";
+import NotificationSettingsForm from "../Forms/NotificationSettingsForm";
 
 const MyAccountModal = ({ isOpen, onClose, children }) => {
   return isOpen
@@ -18,16 +19,7 @@ const MyAccountModal = ({ isOpen, onClose, children }) => {
               <ResetPasswordForm></ResetPasswordForm>
             </div>
             <div className="myaccount-subtitle">Notifications</div>
-            <div className="row-container">
-              <div className="enable-notification-description">
-                Stay informed with personalized email updates for weekly and
-                monthly temperature/humidity reports. Note: You need to assing
-                an email to this account in order to receive these reports.
-                Change your settings as you wish!
-              </div>
-              <div className="enable-notification"></div>
-            </div>
-            {children}
+              <NotificationSettingsForm></NotificationSettingsForm>
           </div>
         </div>,
         document.body
