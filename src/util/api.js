@@ -203,6 +203,36 @@ export const changeUserPasswordAsync = async (
   }
 };
 
+export const updateEnableNotificationsAsync = async (
+  url,
+  enableNotifications,
+  setMessage,
+  setMessageErr,
+  dispatch
+) => {
+  const response = await fetch(
+    `${url}Auth/UpdateEnableNotifications?enableNotifications=` +
+      enableNotifications,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    }
+  );
+  const resData = await response.json();
+  if (resData.success) {
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+    setMessage(resData.message);
+  } else {
+    setMessageErr(resData.message);
+  }
+};
+
 export const changeTypeAsync = async (username, role, url, setMessage) => {
   const userData = {
     username: username,
