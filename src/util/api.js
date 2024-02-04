@@ -252,6 +252,47 @@ export const changeTypeAsync = async (username, role, url, setMessage) => {
   }
 };
 
+/* START OF USER NOTIFICATION SETTINGS API CALLS SECTION */
+
+export const SetNotificationSettingsAsync = async (
+  url,
+  userEmail,
+  frequency,
+  userId,
+  roomNames,
+  setMessage,
+  setMessageErr,
+  dispatch
+) => {
+  const notificationSettings = {
+    userEmail: userEmail,
+    frequency: frequency,
+    userId: userId,
+    roomNames: roomNames,
+  };
+  const response = await fetch(
+    `${url}NotificationSettings/AddNotificationSettings`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getAuthToken(),
+      },
+      body: JSON.stringify(notificationSettings),
+    }
+  );
+  const resData = await response.json();
+  if (resData.success) {
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+    setMessage(resData.message);
+  } else {
+    setMessageErr(resData.message);
+  }
+};
+
 /* START OF ROOM CONFIG API CALLS SECTION */
 
 export const getRoomConfigDataAsync = async (url, dispatch) => {
