@@ -36,21 +36,24 @@
   justify-content: space-between;
   width: calc(100% - 20px);
 }
-.temperature {
-  margin: 0;
-  font-size: 14px;
-  font-weight: bolder;
-  color: #f39c56;
-}
+
+.temperature,
 .humidity {
   margin: 0;
   font-size: 14px;
   font-weight: bolder;
+}
+
+.temperature {
+  color: #f39c56;
+}
+
+.humidity {
   color: #4ad4f7;
 }
 
-/* PHONES */
-@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
+/* Responsive Design */
+@media only screen and (max-width: 480px) {
   .room {
     margin: 1px 2px;
   }
@@ -59,74 +62,47 @@
     margin-bottom: 3%;
     max-width: 16ch;
   }
-  .group {
+  .group,
+  .temperature,
+  .humidity {
     margin: 0 1px;
     width: calc(100% - 1px);
   }
-  .temperature {
-    font-size: 12px;
-  }
+  .temperature,
   .humidity {
     font-size: 12px;
   }
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
+@media only screen and (min-width: 481px) and (max-width: 1020px) and (orientation: landscape) {
   .room {
     margin: 1px;
   }
-  .room-name {
+  .room-name,
+  .temperature,
+  .humidity {
     font-size: 10px;
-    max-width: 16ch;
-  }
-  .group {
-    margin: 0 1px;
-    width: calc(100% - 1px);
-  }
-  .temperature {
-    font-size: 8px;
-  }
-  .humidity {
-    font-size: 8px;
-  }
-}
-/* TABLETS */
-@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .room {
-    margin: 2px;
-  }
-  .room-name {
-    font-size: 16px;
-    max-width: 16ch;
-  }
-  .group {
-    margin: 0 1px;
-    width: calc(100% - 1px);
-  }
-  .temperature {
-    font-size: 14px;
-  }
-  .humidity {
-    font-size: 14px;
   }
 }
 
-@media only screen and (min-device-width: 1021px) and (max-device-width: 1400px) and (orientation: landscape) {
+@media only screen and (min-width: 500px) and (max-width: 1024px) and (orientation: portrait) {
   .room {
     margin: 2px;
   }
-  .room-name {
-    font-size: 16px;
-    max-width: 16ch;
-  }
-  .group {
-    margin: 0 1px;
-    width: calc(100% - 1px);
-  }
-  .temperature {
-    font-size: 14px;
-  }
+  .room-name,
+  .temperature,
   .humidity {
-    font-size: 14px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1021px) and (max-width: 1400px) and (orientation: landscape) {
+  .room {
+    margin: 2px;
+  }
+  .room-name,
+  .temperature,
+  .humidity {
+    font-size: 16px;
   }
 }

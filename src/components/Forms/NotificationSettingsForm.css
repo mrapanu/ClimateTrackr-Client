@@ -98,7 +98,8 @@
   min-width: 45%;
 }
 
-.notification-settings-row-section {
+.notification-settings-freq-section,
+.notification-settings-select-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -130,34 +131,8 @@
   margin-bottom: 20px;
 }
 
-.button-enable-notifications {
-  font-size: 20px;
-  font-weight: 650;
-  padding: 5px;
-  margin: 5px 10px;
-  text-align: center;
-  color: white;
-  background-color: #0fd89c;
-  border: none;
-  border-radius: 5px;
-  min-width: 15%;
-  cursor: pointer;
-}
-
-.button-save-notifications {
-  font-size: 20px;
-  font-weight: 650;
-  padding: 5px;
-  margin: 5px 10px;
-  text-align: center;
-  color: white;
-  background-color: #525252;
-  border: none;
-  border-radius: 5px;
-  min-width: 15%;
-  cursor: pointer;
-}
-
+.button-enable-notifications,
+.button-save-notifications,
 .button-disable-notifications {
   font-size: 20px;
   font-weight: 650;
@@ -165,11 +140,22 @@
   margin: 5px 10px;
   text-align: center;
   color: white;
-  background-color: #525252;
   border: none;
   border-radius: 5px;
-  min-width: 15%;
   cursor: pointer;
+  min-width: 15%;
+}
+
+.button-enable-notifications {
+  background-color: #1affba;
+}
+
+.button-save-notifications {
+  background-color: #525252;
+}
+
+.button-disable-notifications {
+  background-color: #525252;
 }
 
 .button-enable-notifications:hover,
@@ -181,28 +167,69 @@
   background-color: tomato;
 }
 
-.enable-notifications-error {
-  font-size: 18px;
-  font-weight: 650;
-  padding: 5px;
-  text-align: center;
-  color: #f34906;
-  border-radius: 5px;
-  margin: 10px;
-}
-
+.enable-notifications-error,
 .enable-notifications-success {
   font-size: 18px;
   font-weight: 650;
   padding: 5px;
   text-align: center;
-  color: #0fd89c;
   border-radius: 5px;
   margin: 10px;
 }
 
+.enable-notifications-error {
+  color: #f34906;
+}
+
+.enable-notifications-success {
+  color: #0fd89c;
+}
+
 @media screen and (max-width: 1024px) {
-  .enable-notification-description {
+  .notification-settings-container {
+    margin: 10px 0;
+    min-width: 100%;
+  }
+
+  .notification-settings-title {
     font-size: 18px;
+    padding: 5px;
+    margin: 20px 10%;
+  }
+
+  .notification-settings-freq-options,
+  .notification-settings-label {
+    font-size: 16px;
+    padding: 2px;
+    min-width: 45%;
+  }
+
+  .notification-settings-freq-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .notification-settings-rooms-column-container {
+    padding: 2px;
+    margin: 5px;
+  }
+
+  .notification-settings-rooms-title,
+  .notification-settings-room {
+    font-size: 16px;
+  }
+
+  .notification-settings-room {
+    min-width: 90%;
+  }
+
+  .button-enable-notifications,
+  .button-save-notifications,
+  .button-disable-notifications {
+    font-size: 16px;
+    margin: 5px 5px;
+    min-width: 20%;
   }
 }

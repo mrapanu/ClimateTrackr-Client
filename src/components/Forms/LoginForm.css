@@ -9,7 +9,6 @@
 .form {
   position: relative;
   top: 7%;
-  bottom: 0%;
   width: 70%;
   height: 40%;
   max-width: 420px;
@@ -43,6 +42,7 @@
 .btnContainer {
   padding: 5% 20% 0 20%;
 }
+
 .loginButton {
   width: 100%;
   padding: 12px;
@@ -71,23 +71,16 @@
   padding-top: 5%;
 }
 
-.night {
-  .login-header {
-    color: #191813;
-  }
-  .loginButton {
-    background-color: #191813;
-  }
-  .loginButton:hover {
-    background-color: #26676b;
-  }
-  .login-header {
-    color: #191813;
-  }
+.night .login-header,
+.night .loginButton {
+  background-color: #191813;
 }
 
-/* TABLETS */
-@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) and (orientation: portrait) {
+.night .loginButton:hover {
+  background-color: #26676b;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1024px) and (orientation: portrait) {
   .form {
     width: 70%;
     height: 50%;
@@ -101,7 +94,7 @@
   }
 }
 
-@media only screen and (min-device-width: 1023px) and (max-device-width: 1400px) and (orientation: landscape) {
+@media only screen and (min-width: 1023px) and (max-width: 1400px) and (orientation: landscape) {
   .form {
     top: 7%;
     width: 70%;
@@ -112,6 +105,7 @@
   }
   .inputGroup {
     margin-bottom: 10px;
+    padding: 0 10%;
   }
   .input-form {
     width: 100%;
@@ -123,8 +117,7 @@
   }
 }
 
-/* PHONES */
-@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (orientation: portrait) {
+@media only screen and (min-width: 280px) and (max-width: 480px) and (orientation: portrait) {
   .form {
     width: 70%;
     height: 40%;
@@ -138,12 +131,10 @@
     font-size: 25px;
   }
 
-  .btnContainer {
-    padding: 0 10%;
-  }
+  .btnContainer,
   .inputGroup {
-    margin-bottom: 15px;
     padding: 0 10%;
+    margin-bottom: 15px;
   }
   .error {
     font-size: 14px;
@@ -151,7 +142,7 @@
   }
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 1020px) and (orientation: landscape) {
+@media only screen and (min-width: 481px) and (max-width: 1020px) and (orientation: landscape) {
   .form {
     top: 7%;
     width: 70%;
@@ -168,12 +159,10 @@
     font-size: 20px;
   }
 
-  .btnContainer {
-    padding: 0 10%;
-  }
+  .btnContainer,
   .inputGroup {
-    margin-bottom: 10px;
     padding: 0 10%;
+    margin-bottom: 10px;
   }
   .input-form {
     width: 100%;

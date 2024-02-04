@@ -1,6 +1,5 @@
 .selector-container {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -13,9 +12,15 @@
 input[type="checkbox"] {
   transform: scale(1.4);
   margin-right: 8px;
-  align-items: center;
 }
 
 input[type="checkbox"]:checked {
   accent-color: #f39c56;
+}
+
+@media screen and (max-width: 1024px) {
+  input[type="checkbox"] {
+    transform: scale(1);
+    margin-right: 2px;
+  }
 }

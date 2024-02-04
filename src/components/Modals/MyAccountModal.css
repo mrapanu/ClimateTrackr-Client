@@ -10,6 +10,19 @@
   justify-content: center;
 }
 
+.myaccount-modal-container {
+  background: transparent;
+  border-radius: 8px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  top: 5%;
+  left: 0;
+  z-index: 10;
+}
+
 .myaccount-modal-content {
   top: 0;
   left: 0;
@@ -27,19 +40,6 @@
   overflow-y: auto;
 }
 
-.myaccount-modal-container {
-  background: transparent;
-  border-radius: 8px;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  top: 5%;
-  left: 0;
-  z-index: 10;
-}
-
 .myaccount-close-button {
   position: absolute;
   top: 5px;
@@ -54,7 +54,8 @@
   background-color: tomato;
 }
 
-.myaccount-title {
+.myaccount-title,
+.myaccount-subtitle {
   display: flex;
   flex-direction: row;
   font-size: 28px;
@@ -65,13 +66,7 @@
 }
 
 .myaccount-subtitle {
-  display: flex;
-  flex-direction: row;
   font-size: 24px;
-  font-weight: bold;
-  padding: 5px 0;
-  color: #525252;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin: 20px 0;
 }
 
@@ -81,8 +76,6 @@
   justify-content: space-between;
   margin-top: 30px;
 }
-
-
 
 @media screen and (max-width: 1024px) {
   .row-container {

@@ -1,6 +1,5 @@
 .create-account-container {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -11,7 +10,6 @@
 
 .create-account-inputs {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   min-width: 40%;
@@ -19,7 +17,6 @@
 
 .create-account-buttons {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
@@ -47,10 +44,7 @@
   color: #f39c56;
 }
 
-.input-username::placeholder {
-  text-align: center;
-  color: #f39c56;
-}
+.input-username::placeholder,
 .input-password::placeholder {
   text-align: center;
   color: #f39c56;
@@ -67,6 +61,7 @@
   font-weight: 600;
   color: #f39c56;
 }
+
 .create-account-button:hover {
   background-color: #0fd89c;
 }
@@ -89,12 +84,14 @@
     flex-direction: column;
     align-items: center;
   }
+
   .create-account-inputs {
     min-height: 120px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
   }
+
   .create-account-buttons {
     margin-top: 15px;
     flex-direction: column;
