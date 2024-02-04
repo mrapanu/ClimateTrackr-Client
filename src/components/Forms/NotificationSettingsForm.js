@@ -96,7 +96,7 @@ const NotificationSettingsForm = () => {
     <>
       <div className="enable-notification-description">
         Stay informed with personalized email updates for daily, weekly and
-        monthly temperature/humidity reports for your selected rooms. Note: You
+        monthly temperature and humidity reports for your selected rooms. Note: You
         need to assing an email to this account in order to receive these
         reports. Change your settings as you wish!
       </div>
@@ -122,7 +122,15 @@ const NotificationSettingsForm = () => {
             <div className="notification-settings-title">
               NOTIFICATION SETTINGS
             </div>
-            <div className="notification-settings-row-section">
+            <div>
+              {state.userProfile.enableNotifications && messageErr !== "" && (
+                <div className="enable-notifications-error">{messageErr}</div>
+              )}
+              {state.userProfile.enableNotifications && message !== "" && (
+                <div className="enable-notifications-success">{message}</div>
+              )}
+            </div>
+            <div className="notification-settings-freq-section">
               <div className="notification-settings-label">
                 Notification Frequency:
               </div>
@@ -134,7 +142,7 @@ const NotificationSettingsForm = () => {
               </div>
             </div>
             <div className="notification-settings-column-section">
-              <div className="notification-settings-row-section">
+              <div className="notification-settings-select-section">
                 <div className="notification-settings-rooms-column-container">
                   <div className="notification-settings-rooms-title">
                     Available Rooms
@@ -181,12 +189,6 @@ const NotificationSettingsForm = () => {
                 Disable
               </button>
             </div>
-            {state.userProfile.enableNotifications && messageErr !== "" && (
-              <div className="enable-notifications-error">{messageErr}</div>
-            )}
-            {state.userProfile.enableNotifications && message !== "" && (
-              <div className="enable-notifications-success">{message}</div>
-            )}
           </div>
         </div>
       )}
