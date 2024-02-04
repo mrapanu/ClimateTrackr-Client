@@ -64,7 +64,7 @@ const AccountItem = ({ data }) => {
   };
 
   return (
-    <div className="account-container">
+    <div key={data.id} className="account-container">
       <div className="account-inputs">
         <div className="account-username-text">{data.username}</div>
         <div className="display-flex">
