@@ -1,15 +1,22 @@
 import React, { useContext, useState } from "react";
 import { Ctx } from "../../util/reducer";
 import "./NotificationSettingsForm.css";
-import { updateEnableNotificationsAsync } from "../../util/api";
+import {
+  SetNotificationSettingsAsync,
+  updateEnableNotificationsAsync,
+} from "../../util/api";
 import SelectNotificationFrequency from "./SelectNotificationFrequency";
 
 const NotificationSettingsForm = () => {
   const { state, dispatch } = useContext(Ctx);
   const [message, setMessage] = useState("");
   const [messageErr, setMessageErr] = useState("");
-  const [selectedRooms, setSelectedRooms] = useState([]);
-  console.log(selectedRooms);
+  const [selectedRooms, setSelectedRooms] = useState(
+    state.userProfile.selectedRoomNames
+  );
+  const [notificationFrequency, setNotificationFrequency] = useState(
+    state.userProfile.frequency
+  );
 
   const getAvailableRooms = () => {
     return state.configData.filter(
@@ -48,6 +55,43 @@ const NotificationSettingsForm = () => {
     return () => clearTimeout(timeoutId);
   };
 
+  const handleFrequencyUpdate = (newFrequency) => {
+    setNotificationFrequency(newFrequency);
+  };
+
+  const handleDisableNotifications = () => {
+    updateEnableNotificationsAsync(
+      state.url,
+      false,
+      setMessage,
+      setMessageErr,
+      dispatch
+    );
+    const timeoutId = setTimeout(() => {
+      setMessageErr("");
+      setMessage("");
+    }, 5000);
+    return () => clearTimeout(timeoutId);
+  };
+
+  const handleSaveSettings = () => {
+    SetNotificationSettingsAsync(
+      state.url,
+      state.userProfile.email,
+      notificationFrequency,
+      state.userProfile.userId,
+      selectedRooms,
+      setMessage,
+      setMessage,
+      dispatch
+    );
+    const timeoutId = setTimeout(() => {
+      setMessageErr("");
+      setMessage("");
+    }, 5000);
+    return () => clearTimeout(timeoutId);
+  };
+
   return (
     <>
       <div className="enable-notification-description">
@@ -66,10 +110,10 @@ const NotificationSettingsForm = () => {
           </button>
         </div>
       )}
-      {messageErr !== "" && (
+      {!state.userProfile.enableNotifications && messageErr !== "" && (
         <div className="enable-notifications-error">{messageErr}</div>
       )}
-      {message !== "" && (
+      {!state.userProfile.enableNotifications && message !== "" && (
         <div className="enable-notifications-success">{message}</div>
       )}
       {state.userProfile.enableNotifications && (
@@ -83,7 +127,10 @@ const NotificationSettingsForm = () => {
                 Notification Frequency:
               </div>
               <div className="notification-settings-freq-options">
-                <SelectNotificationFrequency></SelectNotificationFrequency>
+                <SelectNotificationFrequency
+                  frequency={notificationFrequency}
+                  onUpdate={handleFrequencyUpdate}
+                ></SelectNotificationFrequency>
               </div>
             </div>
             <div className="notification-settings-column-section">
@@ -95,6 +142,7 @@ const NotificationSettingsForm = () => {
                   {state.configData.lenght !== 0 &&
                     getAvailableRooms().map((i) => (
                       <div
+                        key={i.id}
                         className="notification-settings-room"
                         onClick={() => addRoomToSelected(i.roomName, i.id)}
                       >
@@ -109,6 +157,7 @@ const NotificationSettingsForm = () => {
                   {selectedRooms.lenght !== 0 &&
                     selectedRooms.map((i) => (
                       <div
+                        key={i.roomConfigId}
                         className="notification-settings-room"
                         onClick={() => removeRoomFromSelected(i.roomConfigId)}
                       >
@@ -119,21 +168,30 @@ const NotificationSettingsForm = () => {
               </div>
             </div>
             <div className="notification-settings-buttons-container">
-              <button className="button-save-notifications">Save Settings</button>
-              <button className="button-disable-notifications">
+              <button
+                className="button-save-notifications"
+                onClick={handleSaveSettings}
+              >
+                Save Settings
+              </button>
+              <button
+                className="button-disable-notifications"
+                onClick={handleDisableNotifications}
+              >
                 Disable
               </button>
             </div>
+            {state.userProfile.enableNotifications && messageErr !== "" && (
+              <div className="enable-notifications-error">{messageErr}</div>
+            )}
+            {state.userProfile.enableNotifications && message !== "" && (
+              <div className="enable-notifications-success">{message}</div>
+            )}
           </div>
         </div>
       )}
     </>
   );
-};
-
-export const filterData = (data, selectedWindow) => {
-  const filteredData = data.filter((item) => item.window === selectedWindow);
-  return filteredData;
 };
 
 export default NotificationSettingsForm;

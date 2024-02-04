@@ -16,7 +16,6 @@ input[type="checkbox"] {
   align-items: center;
 }
 
-/* Style for checked checkboxes */
 input[type="checkbox"]:checked {
   accent-color: #f39c56;
 }
