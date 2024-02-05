@@ -6,12 +6,13 @@ import AdminModal from "../components/Modals/AdminModal";
 import AccountPanel from "../components/Panels/AccountPanel";
 import "./MainNavigation.css";
 import MyAccountModal from "../components/Modals/MyAccountModal";
+import SmtpPanel from "../components/Panels/SmtpPanel";
 
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
   const [adminModal, setAdminModal] = useState(false);
   const [myAccountModal, setMyAccountModal] = useState(false);
-  const [view, setView] = useState("general");
+  const [view, setView] = useState("history");
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Ctx);
   const toggleEditMode = () => {
@@ -118,8 +119,8 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
         isOpen={adminModal}
         onClose={closeAdminModal}
       >
-        {view === "general" && <h1>GENERAL PANEL --- TO DO</h1>}
-        {view === "smtp" && <h1>SMTP PANEL --- TO DO</h1>}
+        {view === "history" && <h1>History PANEL --- TO DO</h1>}
+        {view === "smtp" && <SmtpPanel />}
         {view === "accounts" && <AccountPanel />}
       </AdminModal>
       <MyAccountModal

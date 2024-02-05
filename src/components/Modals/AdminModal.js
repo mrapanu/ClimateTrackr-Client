@@ -14,10 +14,10 @@ const AdminModal = ({ onChangeView, view, isOpen, onClose, children }) => {
               <div className="top">
                 <div className="list">
                   <div
-                    className={`item ${view === "general" && "selected"}`}
-                    onClick={(event) => onChangeView("general", event)}
+                    className={`item ${view === "history" && "selected"}`}
+                    onClick={(event) => onChangeView("history", event)}
                   >
-                    GENERAL
+                    HISTORY
                   </div>
                   <div
                     className={`item ${view === "accounts" && "selected"}`}
