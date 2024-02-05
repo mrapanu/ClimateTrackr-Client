@@ -561,3 +561,28 @@ export const getThByIntervalCustomAsync = async (
 };
 
 /* END OF TEMPERATURE & HUMIDITY API CALLS SECTION */
+
+/* START OF SMTP SETTINGS API CALLS SECTION */
+
+export const sendTestEmailAsync = async (
+  smtpSettings,
+  url,
+  setMessage,
+  setMessageErr
+) => {
+  console.log(smtpSettings);
+  const response = await fetch(`${url}Email/SendTestEmail`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify(smtpSettings),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    setMessage(resData.message);
+  } else {
+    setMessageErr(resData.message);
+  }
+};
