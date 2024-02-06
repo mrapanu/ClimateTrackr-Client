@@ -71,7 +71,9 @@
   padding-top: 5%;
 }
 
-.night .login-header,
+.night .login-header {
+  color: #191813;
+}
 .night .loginButton {
   background-color: #191813;
 }
