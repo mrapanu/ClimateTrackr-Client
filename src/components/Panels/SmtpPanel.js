@@ -188,12 +188,14 @@ const SmtpPanel = () => {
       </div>
       <div className="smtp-testemail-container">
         <div className="smtp-row-container">
+          <div className="smtp-description"> Recipient Email Address:</div>
           <input
             type="text"
             className="smtp-input"
-            placeholder="Recipient Email Address"
             onChange={(e) => setRecipient(e.target.value)}
           />
+        </div>
+        <div className="buttons-smtp-container">
           <button className="button-smtp-test" onClick={handleTestButtonClick}>
             Send Test Email
           </button>

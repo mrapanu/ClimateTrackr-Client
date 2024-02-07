@@ -15,7 +15,6 @@
   flex-direction: column;
   justify-content: space-between;
   max-width: 60%;
-  padding: 10px;
   background-color: white;
   border: 2px solid #525252;
   border-radius: 10px;
@@ -79,8 +78,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 5%;
-  margin-bottom: 1%;
+  padding: 5px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .button-smtp-save {
@@ -152,4 +152,55 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   accent-color: #e46701;
+}
+
+@media screen and (max-width: 1024px) {
+  .smtp-container {
+    max-width: 100%;
+    margin: 5% 2%;
+  }
+
+  .smtp-testemail-container {
+    max-width: 100%;
+    margin: 5% 2%;
+  }
+  .smtp-title {
+    font-size: 18px;
+    padding: 2px;
+    margin: 10px 20%;
+  }
+
+  .smtp-description {
+    font-size: 16px;
+    padding: 2px;
+    min-width: 35%;
+  }
+
+  .smtp-input {
+    font-size: 16px;
+    padding: 2px;
+    min-width: 50%;
+  }
+
+  .smtp-input-label {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+
+  .smtp-row-container {
+    flex-direction: column;
+  }
+  .button-smtp-save,
+  .button-smtp-test {
+    font-size: 16px;
+    padding: 2px;
+    margin: 5px 10px;
+  }
+  .smtp-error {
+    font-size: 16px;
+  }
+
+  .smtp-success {
+    font-size: 16px;
+  }
 }
