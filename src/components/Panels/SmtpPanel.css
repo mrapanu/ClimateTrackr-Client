@@ -1,0 +1,155 @@
+.smtp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 60%;
+  min-height: 600px;
+  background-color: white;
+  border: 2px solid #525252;
+  border-radius: 10px;
+  margin: 2% 20%;
+}
+
+.smtp-testemail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 60%;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid #525252;
+  border-radius: 10px;
+  margin: 2% 20%;
+}
+
+.smtp-title {
+  font-size: 22px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #f39c56;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 10px;
+  margin: 10px 20%;
+}
+
+.smtp-description {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 35%;
+}
+
+.smtp-input {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #4ad4f7;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 50%;
+}
+
+.smtp-input-label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.smtp-input::placeholder {
+  color: #4ad4f7;
+}
+
+.smtp-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttons-smtp-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 1%;
+}
+
+.button-smtp-save {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  margin: 5px 10px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid white;
+  border-radius: 5px;
+  min-width: 25%;
+  cursor: pointer;
+}
+
+.button-smtp-save:hover {
+  background-color: #0fd89c;
+  border: 1px solid #0fd89c;
+}
+
+.button-smtp-test {
+  font-size: 20px;
+  font-weight: 650;
+  padding: 5px;
+  margin: 5px 10px;
+  text-align: center;
+  color: white;
+  background-color: #525252;
+  border: 1px solid white;
+  border-radius: 5px;
+  min-width: 25%;
+  cursor: pointer;
+}
+
+.button-smtp-test:hover {
+  background-color: #0fd89c;
+  border: 1px solid #0fd89c;
+}
+
+.smtp-error {
+  font-size: 18px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #f34906;
+  background-color: #525252;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.smtp-success {
+  font-size: 18px;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  color: #0fd89c;
+  background-color: #525252;
+  border: 1px solid #525252;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+input[type="radio"] {
+  transform: scale(1.4);
+  margin-right: 8px;
+}
+
+input[type="radio"]:checked {
+  accent-color: #e46701;
+}

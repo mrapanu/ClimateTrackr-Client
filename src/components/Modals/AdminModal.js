@@ -1,7 +1,15 @@
 import ReactDOM from "react-dom";
+import { useContext, useEffect } from "react";
+import { Ctx } from "../../util/reducer";
+import { getSmtpSettingsAsync } from "../../util/api";
 import "./AdminModal.css";
 
 const AdminModal = ({ onChangeView, view, isOpen, onClose, children }) => {
+  const { state, dispatch } = useContext(Ctx);
+  useEffect(() => {
+    isOpen && getSmtpSettingsAsync(state.url, dispatch);
+  }, [state.url, dispatch, isOpen]);
+
   return isOpen
     ? ReactDOM.createPortal(
         <div className="admin-modal-container">
