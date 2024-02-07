@@ -11,6 +11,7 @@ const initialState = {
   roomData: [],
   accountData: [],
   userProfile: {},
+  smtpSettings: {},
 };
 
 const reducer = (state, action) => {
@@ -31,6 +32,8 @@ const reducer = (state, action) => {
       return { ...state, accountData: action.payload };
     case "UPDATE_USER_PROFILE":
       return { ...state, userProfile: action.payload };
+    case "UPDATE_SMTP_SETTINGS":
+      return { ...state, smtpSettings: action.payload };
     default:
       return state;
   }

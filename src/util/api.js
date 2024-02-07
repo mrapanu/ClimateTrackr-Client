@@ -564,20 +564,72 @@ export const getThByIntervalCustomAsync = async (
 
 /* START OF SMTP SETTINGS API CALLS SECTION */
 
-export const sendTestEmailAsync = async (
+export const saveSmtpSettingsAsync = async (
   smtpSettings,
   url,
   setMessage,
-  setMessageErr
+  setMessageErr,
+  dispatch
 ) => {
-  console.log(smtpSettings);
-  const response = await fetch(`${url}Email/SendTestEmail`, {
+  const response = await fetch(`${url}Email/SaveSmtpSettings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + getAuthToken(),
     },
     body: JSON.stringify(smtpSettings),
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    dispatch({
+      type: "UPDATE_SMTP_SETTINGS",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+    setMessage(resData.message);
+  } else {
+    dispatch({
+      type: "UPDATE_SMTP_SETTINGS",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+    setMessageErr(resData.message);
+  }
+};
+
+export const getSmtpSettingsAsync = async (url, dispatch) => {
+  const response = await fetch(`${url}Email/GetSmtpSettings`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+  });
+  const resData = await response.json();
+  if (resData.success) {
+    dispatch({
+      type: "UPDATE_SMTP_SETTINGS",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+  } else {
+    dispatch({
+      type: "UPDATE_SMTP_SETTINGS",
+      payload: JSON.parse(JSON.stringify(resData.data)),
+    });
+  }
+};
+
+export const sendTestEmailAsync = async (
+  recipient,
+  url,
+  setMessage,
+  setMessageErr
+) => {
+  const response = await fetch(`${url}Email/SendTestEmail`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getAuthToken(),
+    },
+    body: JSON.stringify({ recipient: recipient }),
   });
   const resData = await response.json();
   if (resData.success) {
