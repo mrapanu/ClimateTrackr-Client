@@ -638,3 +638,28 @@ export const sendTestEmailAsync = async (
     setMessageErr(resData.message);
   }
 };
+
+/* END OF SMTP SETTINGS API CALLS SECTION */
+
+/* START OF HISTORY API CALLS SECTION */
+
+export const getHistoryAsync = async (url, setHistoryData, setMessage) => {
+  const response = await fetch(
+    `${url}History/GetHistory`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getAuthToken(),
+      },
+    }
+  );
+  const resData = await response.json();
+  if (resData.data === null) {
+    setHistoryData([]);
+    setMessage("There is no data in history.")  
+  } else {
+    setHistoryData(resData.data);
+    setMessage("");
+  }
+};
