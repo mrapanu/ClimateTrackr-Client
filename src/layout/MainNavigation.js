@@ -3,10 +3,11 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Ctx } from "../util/reducer";
 import AdminModal from "../components/Modals/AdminModal";
-import AccountPanel from "../components/Panels/AccountPanel";
-import "./MainNavigation.css";
 import MyAccountModal from "../components/Modals/MyAccountModal";
+import AccountPanel from "../components/Panels/AccountPanel";
 import SmtpPanel from "../components/Panels/SmtpPanel";
+import HistoryPanel from "../components/Panels/HistoryPanel";
+import "./MainNavigation.css";
 
 const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
   const [isNavActive, setIsNavActive] = useState(false);
@@ -119,7 +120,7 @@ const MainNavigation = ({ isLoggedIn, isAdmin, isNightTime }) => {
         isOpen={adminModal}
         onClose={closeAdminModal}
       >
-        {view === "history" && <h1>History PANEL --- TO DO</h1>}
+        {view === "history" && <HistoryPanel />}
         {view === "smtp" && <SmtpPanel />}
         {view === "accounts" && <AccountPanel />}
       </AdminModal>
