@@ -3,11 +3,11 @@ import "./CurrentThItem.css";
 
 const CurrentThItem = ({ temp, hum }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const formattedTime = currentTime.toLocaleTimeString([], {
-    hour12: false,
+  const formattedTime = currentTime.toLocaleString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
+    hourCycle: "h23",
   });
   useEffect(() => {
     const intervalId = setInterval(() => {
