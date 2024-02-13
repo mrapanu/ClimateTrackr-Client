@@ -15,10 +15,9 @@ const HistoryPanel = () => {
     }, 120000);
     return () => clearInterval(intervalId);
   }, [state.url, setHistoryData, setMessage]);
-  console.log(historyData);
   return (
     <div className="history-container">
-      {historyData.length !== 0 &&
+      {historyData.length !== 0 ?
         historyData.map((i) => {
           return (
             <div className="history-item">
@@ -39,7 +38,7 @@ const HistoryPanel = () => {
               <div className="history-item-action">{modifyActionMessage(i.actionMessage)}</div>
             </div>
           );
-        })}
+        }) : <div className="history-message">{message}</div>}
     </div>
   );
 };

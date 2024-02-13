@@ -61,6 +61,13 @@
   color: #4ad4f7;
 }
 
+.history-message {
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: tomato;
+}
+
 @media screen and (max-width: 1024px) {
   .history-container {
     justify-content: center;
