@@ -35,13 +35,13 @@ const LoginForm = () => {
         </div>
         <div className="btnContainer">
           <button className="loginButton">Login</button>
-        </div>
 
-        {data && !data.success && (
-          <div className="error">
-            <p>{data.message}</p>
-          </div>
-        )}
+          {data && !data.success && (
+            <div className="error">
+              {data.message}
+            </div>
+          )}
+        </div>
       </Form>
     </div>
   );
