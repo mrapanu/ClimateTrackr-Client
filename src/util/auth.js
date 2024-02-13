@@ -18,11 +18,6 @@ export function getUsernameFromToken() {
   }
 }
 
-export function tokenLoader() {
-  const token = getAuthToken();
-  return token;
-}
-
 export function checkAuthLoader() {
   const token = getAuthToken();
 
@@ -44,6 +39,14 @@ export function checkAdminLoader() {
   }
   return null;
 }
+
+export const checkExpiredJwt = (exp, dispatch, navigate, date) => {
+  if (exp && exp < date) {
+    localStorage.removeItem("token");
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  }
+};
 
 export function checkIsLoggedIn() {
   var isLoggedIn = false;

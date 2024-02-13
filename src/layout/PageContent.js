@@ -2,8 +2,10 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { Ctx } from "../util/reducer";
-import "./PageContent.css";
 import MainNavigation from "./MainNavigation";
+import { checkExpiredJwt } from "../util/auth";
+import "./PageContent.css";
+
 
 const PageContent = ({ children }) => {
   const { state, dispatch } = useContext(Ctx);
@@ -21,6 +23,7 @@ const PageContent = ({ children }) => {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const isNightTime = currentHour < 7 || currentHour >= 19;
+    checkExpiredJwt(exp, dispatch, navigate, Date.now());
     dispatch({
       type: "ISADMIN",
       payload:
@@ -54,14 +57,6 @@ const PageContent = ({ children }) => {
       </div>
     </>
   );
-};
-
-const checkExpiredJwt = (exp, dispatch, navigate, date) => {
-  if (exp && exp < date) {
-    localStorage.removeItem("token");
-    dispatch({ type: "LOGOUT" });
-    navigate("/login");
-  }
 };
 
 export default PageContent;
