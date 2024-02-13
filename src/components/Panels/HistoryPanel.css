@@ -60,3 +60,36 @@
   font-size: 18px;
   color: #4ad4f7;
 }
+
+@media screen and (max-width: 1024px) {
+  .history-container {
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 20px 0;
+  }
+  .history-item {
+    flex-direction: column;
+  }
+  .group-hist {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .history-item-action {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+  }
+  .history-item-date,
+  .history-item-user {
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    width: 100%;
+  }
+  .strong-text-history {
+    font-size: 14px;
+  }
+}
