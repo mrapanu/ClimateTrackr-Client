@@ -8,26 +8,24 @@
 
 .form {
   position: relative;
-  top: 7%;
-  width: 70%;
-  height: 50%;
-  max-width: 420px;
-  max-height: 360px;
-  padding: 10px;
+  top: 5%;
+  width: 25%;
+  height: 40%;
+  padding: 1%;
   border: 1px solid rgb(0, 0, 0);
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 5%;
   font-size: 30px;
   color: #270e04;
 }
 
 .inputGroup {
-  margin-bottom: 25px;
+  margin-bottom: 5%;
   padding: 0 20%;
 }
 
@@ -40,7 +38,7 @@
 }
 
 .btnContainer {
-  padding: 5% 20% 0 20%;
+  padding: 0 20% ;
 }
 
 .loginButton {
@@ -64,13 +62,12 @@
 }
 
 .error {
-  display:flex;
-  color: rgb(243, 73, 6);
+  color: tomato;
   font-size: 16px;
   text-align: center;
   font-weight: bolder;
-  padding: 2%;
-  min-width: 100%;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .night .login-header {
