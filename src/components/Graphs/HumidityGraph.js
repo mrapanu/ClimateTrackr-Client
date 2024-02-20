@@ -31,7 +31,7 @@ const HumidityGraph = ({ data }) => {
       >
         <AreaChart data={transformedData}>
           <XAxis dataKey="date" />
-          <YAxis dataKey="humidity" />
+          <YAxis dataKey="humidity" domain={[0,100]}/>
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="2 2" />

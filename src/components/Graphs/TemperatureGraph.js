@@ -21,6 +21,14 @@ const TemperatureGraph = ({ data }) => {
       hourCycle: "h23"
     }),
   }));
+  const maxTemperature = Math.max(...transformedData.map(entry => entry.temperature));
+  const upperBound = Math.ceil(maxTemperature * 1.25 / 10) * 10;
+
+  const ticks = [];
+  for(let i = 0 ; i <= Math.round(upperBound/5); i++)
+  {
+    ticks.push(i*5);
+  }
 
   return (
     <div>
@@ -31,7 +39,7 @@ const TemperatureGraph = ({ data }) => {
       >
         <AreaChart data={transformedData}>
           <XAxis dataKey="date" />
-          <YAxis dataKey="temperature" />
+          <YAxis dataKey="temperature" domain={[0, upperBound]} ticks={ticks}/>
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="2 2" />
