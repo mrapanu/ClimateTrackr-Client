@@ -20,24 +20,11 @@ export function getUsernameFromToken() {
 
 export function checkAuthLoader() {
   const token = getAuthToken();
-
   if (!token) {
     return redirect("/login");
+  } else {
+    return null;
   }
-  return null;
-}
-
-export function checkAdminLoader() {
-  const token = getAuthToken();
-  if (!token) {
-    return redirect("/login");
-  }
-  const role = jwtDecode(token).role;
-
-  if (role !== "Admin") {
-    return redirect("/");
-  }
-  return null;
 }
 
 export const checkExpiredJwt = (exp, dispatch, navigate, date) => {
@@ -48,6 +35,26 @@ export const checkExpiredJwt = (exp, dispatch, navigate, date) => {
   }
 };
 
+export function setIsLoggedIn(dispatch)
+{
+  dispatch({
+    type: "ISLOGGEDIN",
+    payload: getUsernameFromToken() !== null ? true : false,
+  });
+}
+
+export function setIsAdmin(dispatch, isLoggedIn)
+{
+  dispatch({
+    type: "ISADMIN",
+    payload:
+      isLoggedIn &&
+      jwtDecode(localStorage.getItem("token")).role === "Admin"
+        ? true
+        : false,
+  });
+}
+
 export function checkIsLoggedIn() {
   var isLoggedIn = false;
   if (localStorage.getItem("token")) {
@@ -56,6 +63,7 @@ export function checkIsLoggedIn() {
   }
   if (isLoggedIn) {
     return redirect("/");
+  } else {
+    return null;
   }
-  return null;
 }

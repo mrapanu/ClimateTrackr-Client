@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     loader: checkAuthLoader,
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
     loader: checkIsLoggedIn,
     action: loginAction,
