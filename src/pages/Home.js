@@ -45,12 +45,15 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {state.configData.lenght !== 0 &&
+          {state.configData.filter((item) => item.window === 1).length !== 0 ? (
             state.configData
               .filter((item) => item.window === 1)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
-              ))}
+              ))
+          ) : (
+            <HomeRoomItem roomName="No room present."></HomeRoomItem>
+          )}
         </div>
         <div className="window" id="window2">
           {state.isEditMode && state.isAdmin && (
@@ -63,12 +66,15 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {state.configData.lenght !== 0 &&
+          {state.configData.filter((item) => item.window === 2).length !== 0 ? (
             state.configData
               .filter((item) => item.window === 2)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
-              ))}
+              ))
+          ) : (
+            <HomeRoomItem roomName="No room present."></HomeRoomItem>
+          )}
         </div>
         <div className="window" id="window3">
           {state.isEditMode && state.isAdmin && (
@@ -81,12 +87,16 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {state.configData.lenght !== 0 &&
+
+          {state.configData.filter((item) => item.window === 3).length !== 0 ? (
             state.configData
               .filter((item) => item.window === 3)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
-              ))}
+              ))
+          ) : (
+            <HomeRoomItem roomName="No room present."></HomeRoomItem>
+          )}
         </div>
         <div className="window" id="window4">
           {state.isEditMode && state.isAdmin && (
@@ -99,12 +109,15 @@ function HomePage() {
               EDIT
             </button>
           )}
-          {state.configData.lenght !== 0 &&
+          {state.configData.filter((item) => item.window === 4).length !== 0 ? (
             state.configData
               .filter((item) => item.window === 4)
               .map((i) => (
                 <HomeRoomItem key={i.id} roomName={i.roomName}></HomeRoomItem>
-              ))}
+              ))
+          ) : (
+            <HomeRoomItem roomName="No room present."></HomeRoomItem>
+          )}
         </div>
       </div>
       <WindowEditModal
