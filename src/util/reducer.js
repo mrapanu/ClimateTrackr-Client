@@ -6,6 +6,7 @@ const initialState = {
   url: process.env.REACT_APP_API_URL,
   isEditMode: false,
   isNight: false,
+  isLoggedIn: false,
   isAdmin: false,
   configData: [],
   roomData: [],
@@ -22,6 +23,8 @@ const reducer = (state, action) => {
       return { ...state, isNight: action.payload };
     case "ISADMIN":
       return { ...state, isAdmin: action.payload };
+    case "ISLOGGEDIN":
+      return { ...state, isLoggedIn: action.payload };
     case "LOGOUT":
       return initialState;
     case "UPDATE_ROOM_CONFIG":
