@@ -1,4 +1,4 @@
-FROM node:20.11-alpine
+FROM node:20.11-alpine as builder
 
 # Set the environment variable for the API URL during the build
 ENV REACT_APP_API_URL=REACT_APP_API_URL_REPLACE
@@ -23,7 +23,11 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=0 /usr/src/app/build /usr/share/nginx/html
+# Update the default nginx configuration with try_files directive
+RUN sed -i '/location \/ {/a\   try_files $uri /index.html;' /etc/nginx/conf.d/default.conf
+
+# Copy the built React app from the previous stage
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
 WORKDIR /usr/local/bin
 
