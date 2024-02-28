@@ -35,6 +35,14 @@ export const checkExpiredJwt = (exp, dispatch, navigate, date) => {
   }
 };
 
+export const jwtExists = () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return false;
+  }
+  return true;
+}
+
 export function setIsLoggedIn(dispatch)
 {
   dispatch({
