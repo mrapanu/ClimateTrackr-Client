@@ -1,4 +1,4 @@
-# ClimateTrackr Project Documentation
+# ClimateTrackr
 
 Welcome to the ClimateTrackr project! This document provides an overview of the project components, installation instructions, and usage guidelines.
 
