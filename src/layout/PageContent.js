@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { Ctx } from "../util/reducer";
 import MainNavigation from "./MainNavigation";
+import Footer from "./Footer";
 import { checkExpiredJwt, setIsAdmin, setIsLoggedIn } from "../util/auth";
 import "./PageContent.css";
 
@@ -42,6 +43,7 @@ const PageContent = ({ children }) => {
       <div className={`body-container ${state.isNight ? "night" : "day"}`}>
         <div className="page-content-container">{children}</div>
       </div>
+      <Footer isNightTime={state.isNight}/>
     </>
   );
 };
