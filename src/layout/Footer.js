@@ -6,7 +6,7 @@ const Footer = ({isNightTime}) => {
     <div className="footer">
       <div className="footer-content">
         <div className="centered-content">
-          <FaGithub size={25} className="github-icon" />
+          <FaGithub size={16} className="github-icon" />
           <a
             className={`footer-link ${isNightTime ? "night" : "day"}`}
             href="https://github.com/mrapanu/ClimateTrackr-Client"
