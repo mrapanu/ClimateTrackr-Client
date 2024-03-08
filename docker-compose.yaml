@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  ct-mysql:
+    image: arm64v8/mysql
+    container_name: ct-mysql
+    restart: unless-stopped
+    networks:
+      - climatetrackr-default-network
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=<mysqlpasswd>
+    volumes:
+      - ct_mysql_data:/var/lib/mysql
+
+  ct-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: ct-rabbitmq
+    restart: unless-stopped
+    networks:
+      - climatetrackr-default-network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  ct-server:
+    image: mrapanu/climatetrackr-server:latest
+    container_name: ct-server
+    restart: unless-stopped
+    depends_on:
+      - ct-mysql
+      - ct-rabbitmq
+    networks:
+      - climatetrackr-default-network
+    ports:
+      - "9081:80"
+    environment:
+      - TZ=<YOUR TIMEZONE>
+      - DB_CONN_STRING=<server=ct-mysql;userid=root;password=yourpassword;database=ClimateTrackr;port=3306>
+      - RABBITMQ_CONN_STRING=<Example:amqp://guest:guest@ct-rabbitmq:5672/>
+      - RABBITMQ_EXCHANGE_NAME=<exchange_name Example:climateTrackr_ex>
+      - RABBITMQ_ROUTING_KEY=<your_routing_key Example:climateTrakcrKey>
+      - JWT_SECRET_TOKEN=<secret_token_min_16_chars>
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+  ct-client:
+    image: mrapanu/climatetrackr-client:latest
+    container_name: ct-client
+    restart: unless-stopped
+    depends_on:
+      - ct-server
+    networks:
+      - climatetrackr-default-network
+    ports:
+      - "9080:80"
+    environment:
+      - REACT_APP_API_URL=http://<Your_Docker_Server_IP>:9081/api/
+
+networks:
+  climatetrackr-default-network:
+    driver: bridge
+
+volumes:
+  ct_mysql_data:
