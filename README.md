@@ -10,8 +10,6 @@ Welcome to the ClimateTrackr project! This document provides an overview of the 
    - [Install with Kubernetes](#install-with-kubernetes)
    - [Sensor Installation](#sensor-installation)
 3. [Usage](#usage)
-4. [Contributing](#contributing)
-5. [License](#license)
 
 ## Overview
 
@@ -151,6 +149,10 @@ You can install the ClimateTrackr components using either Docker or Kubernetes.
    docker-compose up -d
    ```
 
+4. **To Remove the entire stack**
+   ```bash
+   docker-compose down -v
+   ```
 
 ### Install with Kubernetes
 
