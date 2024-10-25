@@ -446,7 +446,7 @@ export const getThCurrentDataAsync = async (roomName, setTemp, setHum, url) => {
   if (jwtExists()) {
     const time = new Date();
     const convertedTime =
-      time.toLocaleDateString() +
+      time.toLocaleDateString("en-US") +
       " " +
       time.toLocaleTimeString(undefined, { hour12: false });
     const response = await fetch(
@@ -477,7 +477,7 @@ export const getThCurrentAsync = async (roomName, setTemp, setHum, url) => {
   if (jwtExists()) {
     const time = new Date();
     const convertedTime =
-      time.toLocaleDateString() +
+      time.toLocaleDateString("en-US") +
       " " +
       time.toLocaleTimeString(undefined, { hour12: false });
     const response = await fetch(
@@ -514,11 +514,11 @@ export const getThByIntervalAsync = async (
     const start = new Date();
     const end = new Date(start.getTime() - timeRange);
     const convertedEnd =
-      end.toLocaleDateString() +
+      end.toLocaleDateString("en-US") +
       " " +
       end.toLocaleTimeString(undefined, { hour12: false });
     const convertedStart =
-      start.toLocaleDateString() +
+      start.toLocaleDateString("en-US") +
       " " +
       start.toLocaleTimeString(undefined, { hour12: false });
 
@@ -562,11 +562,11 @@ export const getThByIntervalCustomAsync = async (
     const start = new Date(to.getTime());
     const end = new Date(from.getTime());
     const convertedEnd =
-      end.toLocaleDateString() +
+      end.toLocaleDateString("en-US") +
       " " +
       end.toLocaleTimeString(undefined, { hour12: false });
     const convertedStart =
-      start.toLocaleDateString() +
+      start.toLocaleDateString("en-US") +
       " " +
       start.toLocaleTimeString(undefined, { hour12: false });
     try {
